@@ -1,0 +1,14 @@
+.review-item{
+  background-color: rgba($blue, .15);
+  padding: 16px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  .top{
+    display: flex;
+    justify-content: space-between;
+    h5{
+      margin-bottom: 0;
+    }
+  }
+
+}

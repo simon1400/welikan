@@ -1,0 +1,20 @@
+.stars{
+  white-space: nowrap;
+  min-width: 125px;
+  margin-left: 20px;
+  &.uk-width-auto{
+    min-width: auto;
+  }
+  img, svg{
+    height: 20px;
+    width: 20px;
+    color: $accent;
+    margin-left: 5px;
+  }
+  span{
+    color: $accent;
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}

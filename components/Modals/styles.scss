@@ -1,0 +1,19 @@
+@import "./Title/styles";
+@import "./Close/styles";
+@import "./DoneItem/styles";
+
+.modal-input{
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  &.multi{
+    > div{
+      &:first-child{
+        margin-right: 10px;
+      }
+      &:last-child{
+        margin-left: 10px;
+      }
+    }
+  }
+}

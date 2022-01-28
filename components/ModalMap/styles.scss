@@ -1,0 +1,26 @@
+.modal-map{
+  .uk-modal-dialog{
+    display: grid;
+    grid-template-columns: minmax(270px, 575px) auto;
+    width: 1240px;
+    max-height: 100%;
+  }
+  .modal-left{
+    padding-left: 25px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    .left-content{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 20px;
+      .multi-checkbox{
+        max-height: 100%;
+      }
+      .map-modal-result{
+        position: relative;
+        height: calc(100% - 82px);
+      }
+    }
+  }
+}

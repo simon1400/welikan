@@ -1,0 +1,14 @@
+.check-icon{
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $success;
+  display: flex;
+  img, svg{
+    // width: 15px;
+    height: 13px;
+    margin: auto;
+    color: $success;
+  }
+}

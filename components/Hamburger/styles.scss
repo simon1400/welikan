@@ -1,0 +1,15 @@
+$hamburger-padding-x           : 0;
+$hamburger-padding-y           : 0;
+$hamburger-layer-width         : 18px;
+$hamburger-layer-height        : 2px;
+$hamburger-layer-spacing       : 3px;
+$hamburger-layer-color         : $blue;
+$hamburger-layer-border-radius : 4px !default;
+$hamburger-hover-opacity       : 1;
+// $hamburger-active-layer-color  : $hamburger-layer-color !default;
+// $hamburger-active-hover-opacity: $hamburger-hover-opacity !default;
+
+.hamburger{
+  z-index: 1112;
+  position: relative;
+}

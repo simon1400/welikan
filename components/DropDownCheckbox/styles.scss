@@ -1,0 +1,32 @@
+.dropdown-checkbox{
+  input{
+    display: none;
+    &:checked + label{
+      background-color: rgba($blue, .15);
+      img, svg{
+        display: block;
+      }
+    }
+  }
+  label{
+    padding: 9px 16px;
+    font-size: 14px;
+    line-height: 23px;
+    white-space: nowrap;
+    color: $grey;
+    position: relative;
+    background-color: #fff;
+    border: none;
+    display: block;
+    width: calc(100% - 32px);
+    img, svg{
+      display: none;
+      width: 16px;
+      height: 12px;
+      color: $grey;
+      position: absolute;
+      top: 14px;
+      right: 20px;
+    }
+  }
+}

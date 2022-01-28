@@ -1,0 +1,31 @@
+.address-input{
+  position: relative;
+  border: 1px solid $blue;
+  border-radius: 100px;
+  font-size: 14px;
+  color: $grey;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  span{
+    line-height: 30px;
+  }
+  img, svg{
+    position: absolute;
+    width: auto;
+    cursor: pointer;
+    &:first-of-type{
+      height: 10px;
+      color: $blue;
+      left: 15px;
+      top: 10px;
+    }
+    &:last-of-type{
+      height: 12px;
+      top: 9px;
+      right: 15px;
+      color: $grey;
+    }
+  }
+}

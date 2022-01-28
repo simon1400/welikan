@@ -1,0 +1,16 @@
+.breadcrumbs{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before{
+  width: 7px;
+  height: 12px;
+  position: relative;
+  top: 5px;
+}
+
+$breadcrumb-item-font-size: 14px;
+$breadcrumb-item-color: $grey;
+$breadcrumb-divider: url("/assets/angle-right.svg");
+$breadcrumb-divider-margin-horizontal: 9px;
+$breadcrumb-divider-color: $grey;

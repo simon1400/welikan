@@ -1,0 +1,16 @@
+.date-picker{
+  .rdrDateDisplayWrapper{
+    display: none;
+  }
+  .rdrCalendarWrapper{
+    width: 100%;
+    border: 1px solid $blue;
+    border-radius: 10px;
+  }
+  .rdrMonths{
+    width: 100%;
+  }
+  .rdrMonth{
+    width: 50%;
+  }
+}

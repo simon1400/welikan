@@ -1,0 +1,54 @@
+.range{
+  > span{
+    display: block;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: 400;
+    color: $grey;
+    margin-bottom: 65px;
+  }
+  .input-range{
+    height: 4px;
+    .input-range__track--background{
+      height: 4px;
+      border-radius: 100px;
+      background: rgba($blue, .4);
+    }
+    .input-range__track--active{
+      background: $blue;
+    }
+    .input-range__label:not(.input-range__label--value){
+      // display: none;
+      color: $blue;
+      font-size: 12px;
+      line-height: 15px;
+    }
+    .input-range__slider{
+      width: 11px;
+      height: 11px;
+      background: $dark;
+      border-color: $dark;
+      margin-top: -0.55rem;
+    }
+    .input-range__label--value{
+      top: -50px;
+      .input-range__label-container{
+        background-color: $blue;
+        padding: 8px;
+        color: white;
+        border-radius: 4px;
+        &:after{
+          content: '';
+          display: block;
+          transform: rotate(-45deg) translateX(-7px);
+          width: 10px;
+          height: 10px;
+          background-color: $blue;
+          bottom: 1px;
+          left: 50%;
+          position: absolute;
+        }
+      }
+    } 
+  }
+}

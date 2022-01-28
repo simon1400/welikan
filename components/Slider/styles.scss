@@ -1,0 +1,21 @@
+.uk-slider{
+  > div{
+    .uk-slider-container{
+      padding: 20px;
+      margin: -10px;
+    }
+    > a{
+      visibility: visible!important;
+      display: flex!important;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba($blue, .15);
+      img, svg{
+        height: 20px;
+        width: auto;
+        margin: auto;
+      }
+    }
+  }
+}

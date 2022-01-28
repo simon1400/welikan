@@ -1,0 +1,83 @@
+header{
+  .header-wrap{
+    display: flex;
+    // grid-template-columns: 95px ;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+  nav.desktopMenu{
+    display: flex;
+    align-items: center;
+    ul{
+      li{
+        display: inline-block;
+        padding-left: 21px;
+        padding-right: 21px;
+        a{
+          color: $dark;
+          font-size: $text;
+        }
+      }
+    }
+  }
+  .button.accent{
+    margin-left: 28px;
+    margin-right: 22px;
+  }
+  .contact-top{
+    margin-left: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .control-top{
+    ul{
+      li{
+        margin-left: 8px;
+        margin-right: 8px;
+        display: inline-block;
+        a{
+          font-size: $text_s;
+          img{
+            width: 14px;
+            height: 9px;
+            margin-right: 2px;
+          }
+          &.link{
+            font-size: $text_xs;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 640px){
+  header{
+    .button img, .button svg, a.button img, a.button svg{
+      margin-right: 0;
+    }
+    .button.accent{
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .control-top ul{
+      white-space: nowrap;
+      li{
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    } 
+    .logo{
+      width: 59px;
+      height: 39px;
+    }
+  }
+}

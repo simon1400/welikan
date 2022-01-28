@@ -1,0 +1,27 @@
+.textarea{
+  label{
+    display: block;
+    border: none;
+    font-size: 12px;
+    line-height: 21px;
+    margin-bottom: 8px;
+    color: rgba($grey, .4);
+  }
+  textarea{
+    width: calc(100% - 30px);
+    display: block;
+    height: 275px;
+    border-radius: 4px;
+    box-shadow: $input_shadow_small;
+    background-color: #fff;
+    resize: none;
+    font-size: 14px;
+    padding: 15px;
+    color: $grey;
+    border: none;
+    font-family: $ff;
+    &:active, &:focus{
+      outline: none;
+    }
+  }
+}

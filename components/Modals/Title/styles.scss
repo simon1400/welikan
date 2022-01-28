@@ -1,0 +1,21 @@
+.title{
+  margin-bottom: 50px;
+  display: flex;
+  width: 100%;
+  h2{
+    font-size: 30px;
+    line-height: 36px;
+    color: $grey;
+    margin-bottom: 0;
+  }
+  span{
+    font-size: 14px;
+    line-height: 23px;
+    color: $grey;
+  }
+  .search-modal{
+    max-width: 500px;
+    width: 100%;
+    margin-left: 30px;
+  }
+}

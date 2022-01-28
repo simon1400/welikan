@@ -1,0 +1,26 @@
+.pagination{
+  margin-top: 70px;
+  img, svg{
+    width: 8.6px;
+    height: 15.1px;
+  }
+  > ul{
+    justify-content: center;
+    li{
+      &.uk-active{
+        span{
+          background-color: $dark;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+}
+
+$pagination-margin-horizontal: 24px;
+$pagination-item-padding-vertical: 6px;
+$pagination-item-padding-horizontal: 6px;
+$pagination-item-color: $dark;
+$pagination-item-hover-color: $blue;
+$pagination-item-active-color: white;
+$pagination-item-disabled-color: rgba($blue, .4);

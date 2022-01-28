@@ -1,0 +1,51 @@
+.sidebar-item{
+  text-align: center;
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  transition: all .5s ease;
+  &:hover{
+    text-decoration: none;
+    .icon{
+      background-color: lighten($blue, 15%);
+      svg{
+        color: white;
+      }
+    }
+    span{
+      color: $dark;
+    }
+  }
+  &.active{
+    .icon{
+      background-color: $blue;
+      img, svg{
+        color: white;
+      }
+    }
+    span{
+      color: $dark;
+    }
+  }
+  .icon{
+    background-color: rgba($blue, .15);
+    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    img, svg{
+      margin: auto;
+      color: rgba(#8F92A1, .6);
+      height: 16px;
+    }
+  }
+  span{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba($grey, .6);
+    text-align: center;
+  }
+}

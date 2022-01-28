@@ -1,0 +1,17 @@
+.modal-close{
+  border-radius: 50%;
+  background-color: $blue;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  img, svg{
+    width: 16px;
+    height: 16px;
+    color: white;
+    margin: auto;
+  }
+}

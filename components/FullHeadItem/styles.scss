@@ -1,0 +1,17 @@
+.full-head-item{
+  display: flex;
+  
+  .img-wrap{
+    min-height: 370px;
+    min-width: 580px;
+    width: 580px;
+    &.square{
+      min-height: 350px;
+      min-width: 350px;
+      width: 350px;
+    }
+  }
+  .item-content{
+    padding: 30px;
+  }
+}

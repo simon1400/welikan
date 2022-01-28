@@ -1,0 +1,13 @@
+.dragdrop-sec{
+  > div{
+    background-color: #F7F7F7;
+    border: 1px dashed $blue;
+    height: 280px;
+    border-radius: 3px;
+    display: flex;
+    cursor: pointer;
+    > *{
+      margin: auto;
+    }
+  }
+} 

@@ -1,0 +1,261 @@
+@import "var";
+@import "fonts";
+@import "components";
+@import "layouts";
+@import "lib";
+
+.item{
+  box-shadow: $shadow;
+  margin-bottom: 40px;
+  .top-item-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    h5, h2{
+      margin-bottom: 0;
+    }
+  }
+  .labels-wrap{
+    &:not(:last-child){
+      margin-bottom: 20px;
+    }
+    label, .uk-label{
+      margin-right: 5px;
+    }
+  }
+}
+
+.item-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  width: 100%;
+}
+
+time{
+  font-size: 12px;
+  display: block;
+  color: rgba($grey, .4);
+}
+
+.search{
+  text-align: center;
+  padding: 50px 0;
+  h1{
+    margin-bottom: 45px;
+  }
+  .form-wrap{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 8fr 1fr;
+    grid-column-gap: 40px;
+    margin-bottom: 10px;
+  }
+}
+
+.img-wrap{
+  overflow: hidden;
+  position: relative;
+  img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .button{
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+section{
+  padding-top: 55px;
+  padding-bottom: 30px;
+  &.small-sec{
+    padding: 40px 0;
+  }
+}
+
+.uk-label{
+  img, svg{
+    height: 14px;
+    width: 14px;
+    color: white;
+    margin-left: 5px;
+  }
+  &.bare{
+    padding: 1px 10px;
+    background-color: transparent;
+    line-height: 21px;
+    font-size: 12px;
+    color: $blue;
+    border-radius: 100px;
+  }
+}
+
+.section-head{
+  h2{
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 30px;
+  }
+  label, .uk-label{
+    margin-right: 5px;
+  }
+}
+
+.direction-list{
+  ul{
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+    li{
+      margin-bottom: 20px;
+      padding-left: 25px;
+      position: relative;
+      b{
+        font-size: 22px;
+        text-transform: uppercase;
+        color: $blue;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        top: -7px;
+      }
+      a{
+        font-size: 14px;
+        color: $blue;
+      }
+      span{
+        font-size: 12px;
+        color: rgba($grey, .6);
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.section-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  h2{
+    margin-bottom: 0;
+  }
+}
+
+.layout{
+  display: grid;
+  grid-column-gap: 50px;
+}
+
+.layout-leftbar{
+  grid-template-columns: 2fr 7fr;
+}
+.layout-rightbar{
+  grid-template-columns: 7fr 2fr;
+}
+
+.labels{
+  label, .uk-label{
+    margin-bottom: 10px;
+    &:not(:last-child){
+      margin-right: 10px;
+    }
+  }
+}
+
+
+.uk-table{
+  box-sizing: border-box;
+  thead{
+    background-color: rgba($blue, .15);
+    tr{
+      th{
+        text-transform: none;
+        border-right: 1px solid rgba($blue, .15);
+        &:first-child{
+          border-left: 1px solid rgba($blue, .15);
+        }
+
+      }
+    }
+  }
+  tbody{
+    tr{
+      &:last-child{
+        border-bottom: 1px solid rgba($blue, .15);
+      }
+      td{
+        font-size: 14px;
+        border-right: 1px solid rgba($blue, .15);
+        &:first-child{
+          border-left: 1px solid rgba($blue, .15);
+        }
+      }
+    }
+  }
+}
+
+
+.block{
+  box-shadow: $shadow;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.content-info{
+  ul{
+    padding-left: 20px;
+    li{
+      list-style-type: disc;
+      font-size: 14px;
+      color: $grey;
+      line-height: 23px;
+      font-weight: 400;
+    }
+  }
+}
+
+.button-wrap{
+  display: grid;
+  grid-column-gap: 15px;
+  &.two{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.info-wrap{
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-column-gap: 30px;
+}
+
+.edit-wrap{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-column-gap: 30px;
+  margin-bottom: 30px;
+}
+
+.admin-head-button{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .button{
+    margin-right: 10px;
+  }
+  h2{
+    margin-bottom: 0;
+  }
+}
+
+@import "media"

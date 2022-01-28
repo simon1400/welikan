@@ -1,0 +1,65 @@
+.input{
+  width: 100%;
+  position: relative;
+  &.small{
+    input{
+      height: 18px;
+      padding: 11px;
+    }
+    img, svg{
+      top: 13px;
+    }
+  }
+  &.radius{
+    input{
+      border-radius: 100px;
+      box-shadow: none;
+      border: 1px solid rgba(66, 91, 173, 0.15);
+    }
+    img, svg{
+      color: $blue;
+    }
+  }
+  &.with-icon{
+    input{
+      padding-left: 44px;
+      width: calc(100% - 60px);
+    }
+  }
+  input{
+    width: calc(100% - 32px);
+    height: 24px;
+    border-radius: 4px;
+    box-shadow: $input_shadow_small;
+    font-size: 14px;
+    color: #222326;
+    padding: 16px;
+    border: none;
+    background-color: white;
+    &:active, &:focus{
+      outline: none;
+    }
+    ::placeholder {
+      color: #737373;
+      font-size: 12px;
+      line-height: 21px;
+      font-weight: 400;
+    }
+  }
+  img, svg{
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    color: #111;
+  }
+  label{
+    font-size: 12px;
+    line-height: 21px;
+    margin-bottom: 8px;
+    color: rgba($grey, .4);
+    display: block;
+    border: none;
+  }
+}

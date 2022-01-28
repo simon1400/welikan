@@ -1,0 +1,71 @@
+
+@import "./Auth/styles";
+
+$modal-background: rgba($grey, .15);
+$modal-dialog-width: 1085px;
+$modal-dialog-background: white;
+$modal-body-padding-horizontal: 25px;
+$modal-body-padding-vertical: 12px;
+
+.uk-modal-body{
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
+}
+
+.footer-modal{
+  margin-top: 30px;
+  margin-bottom: 30px!important;
+  text-align: center;
+}
+
+.xsmall-modal{
+  .uk-modal-dialog{
+    width: 480px;
+  }
+}
+.small-modal{
+  .uk-modal-dialog{
+    width: 875px;
+  }
+}
+.big-modal{
+  .uk-modal-dialog{
+    width: 100%;
+    max-width: 1240px;
+  }
+}
+
+.content-modal{
+  padding-bottom: 30px;
+  ul{
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+    li{
+      a{
+        font-size: 14px;
+        line-height: 23px;
+        color: $dark;
+        span{
+          font-size: 11px;
+          color: $blue;
+          text-transform: uppercase;
+          margin-right: 10px;
+        }
+        &:hover{
+          text-decoration: none;
+          color: $blue;
+        }
+      }
+    }
+  }
+}
+
+.content-modal-center{
+  padding-top: 130px;
+  padding-bottom: 130px;
+  text-align: center;
+}

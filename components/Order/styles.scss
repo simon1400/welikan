@@ -1,0 +1,22 @@
+.order{
+  width: calc(100% - 60px);
+  box-shadow: 0px 0px 20px rgba(23, 50, 97, 0.2);
+  padding: 20px 30px;
+  margin-bottom: 35px;
+  .order-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2{
+      margin-top: 0;
+      margin-bottom: 0;
+      color: $color;
+      font-size: 22px;
+      line-height: 30px;
+    }
+    time{
+      margin-bottom: 10px;
+    }
+  }
+  
+}

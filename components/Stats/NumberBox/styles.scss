@@ -1,0 +1,61 @@
+.number-box{
+  background-color: $blue;
+  color: white;
+  display: flex;
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 165px;
+  height: 165px;
+  position: relative;
+  margin: 0 auto;
+  &:after, &:before{
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  &:before{
+    width: 267px;
+    height: 267px;
+    background-color: rgba(white, .4);
+    top: -133px;
+    z-index: 1;
+  }
+  &:after{
+    width: 156px;
+    height: 156px;
+    background-color: rgba(white, .8);
+    top: -78px;
+    z-index: 2;
+  }
+  > div{
+    margin: auto;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+  }
+  img, svg{
+    height: 52px;
+    width: auto;
+    margin-bottom: 13px;
+    color: $blue;
+  }
+  span{
+    color: $accent;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    display: block;
+    letter-spacing: 1px;
+  }
+  p{
+    font-size: 14px;
+    line-height: 23px;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
