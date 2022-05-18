@@ -25,7 +25,8 @@ const Page: FC<PageProps> = ({
   updated,
   noCrawl,
   tags,
-  admin = false
+  admin = false,
+  navigation
 }) => {
   const router = useRouter()
   const [global, setGlobal] = useState({
@@ -42,6 +43,8 @@ const Page: FC<PageProps> = ({
   const theDescription: string = description ? description : global.defaultDescription;
   const theImage: string = image ? image : global.defaultImage;
 
+  // console.log('*page navigation', navigation);
+
   return (
     <>
       <Head>
@@ -56,7 +59,7 @@ const Page: FC<PageProps> = ({
         <meta charSet="utf-8" />
 
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-        
+
         <link rel="icon" href="/favicon/favicon.ico" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -134,7 +137,7 @@ const Page: FC<PageProps> = ({
           </div>
         </div> : children}
       </main>
-      <Footer />
+      <Footer links={navigation}/>
       <SingUpModal />
       <Login />
       <Language />

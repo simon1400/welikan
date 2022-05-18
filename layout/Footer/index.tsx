@@ -1,6 +1,31 @@
+import { useQuery } from '@apollo/client'
 import {FC} from 'react'
+import { NavigationLinks } from '../../interfaces/page'
+import { navigationQuery } from '../../queries/navigation'
 
-const Footer: FC = () => {
+interface FooterProps {
+  links: NavigationLinks | undefined
+}
+
+
+
+const Footer: FC<FooterProps> = () => {
+
+  const {data, loading, error} = useQuery(navigationQuery)
+
+  if(loading || data === undefined) {
+    return null
+  }
+
+  console.log('*footerData', data);
+  // const footerNav = data.navigation.data.attributes
+
+
+
+  const seoLinks = data.navigation.data.attributes.footerSeoLinks;
+  const menuLinks = data.navigation.data.attributes.menuLinks;
+  const socLinks =  data.navigation.data.attributes.footerIconLinks;
+
   return (
     <footer>
       <div className="uk-container">
@@ -10,39 +35,35 @@ const Footer: FC = () => {
               <img src="/assets/logo-foot.png" alt="" />
             </div>
             <ul>
-              <li><a href="/asd">Условия договора покупателя</a></li>
-              <li><a href="/asd">Условия договора предлагающего</a></li>
-              <li><a href="/asd">Политика конфиденциальности</a></li>
+              { seoLinks?.map((item, index) =>
+                <li key={index}><a href={item.link}>{item.label}</a></li>
+              )}
             </ul>
           </div>
-          <div>
-            <nav>
-              <ul>
-                <li>Menu Title</li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div>
-            <nav>
-              <ul>
-                <li>Menu Title</li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-              </ul>
-            </nav>
-          </div>
+
+          { menuLinks?.map((item, index) =>
+            <div key={`menu-${index+1}`}>
+              <nav>
+                <ul>
+                  <li>{item.menuTitle}</li>
+                  { item.links.map((item, index) =>
+                    <li key={`link-${index+1}`}><a href={item.link}>{item.label}</a></li>
+                  )}
+                </ul>
+              </nav>
+            </div>
+          )}
+
           <div>
             <nav className="soc-nav">
               <ul>
-                <li><a href=""><img src="/assets/twitter.svg" alt="" uk-svg="" /></a></li>
-                <li><a href=""><img src="/assets/facebook.svg" alt="" uk-svg="" /></a></li>
-                <li><a href=""><img src="/assets/github.svg" alt="" uk-svg="" /></a></li>
+              { socLinks?.map((item, index) =>
+                <li key={index} title={item.label}>
+                  <a href={item.link}>
+                    <img src={item.iconLink} alt={item.label} uk-svg="" />
+                  </a>
+                </li>
+              )}
               </ul>
             </nav>
           </div>

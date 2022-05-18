@@ -1,18 +1,26 @@
 import { FC } from "react"
+import { getStrapiMedia } from '../../lib/api';
 import Stars from "../Stars"
 
 interface FullHeadItemProps {
-  square?: boolean
+  square?: boolean;
+  type?: string;
+  data?: any; //add type
 }
 
-const FullHeadItem: FC<FullHeadItemProps> = ({square = false}) => {
+const FullHeadItem: FC<FullHeadItemProps> = ({square = false, type="promotion", data}) => {
+
+  const avatar = data?.image?.data?.attributes;
+
   return (
     <div className="full-head-item item">
       <div className={`img-wrap ${square ? 'square' : ''}`}>
-        <img src="/assets/stock-item.jpg" alt="Stock" />
-        {/* <a href="" className="button accent">Оставить отзыв</a> */}
+        <img  src={`${avatar && getStrapiMedia(avatar)}`} alt={data.title} />
+        {type === 'doctor' && <a href="" className="button accent">Оставить отзыв</a>}
       </div>
-      <div className="item-content">
+
+      { type === 'promotion' &&
+        <div className="item-content">
         <div className="labels-wrap">
           <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
           <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
@@ -34,7 +42,34 @@ const FullHeadItem: FC<FullHeadItemProps> = ({square = false}) => {
           <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
           <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
         </div> */}
-      </div>
+        </div>
+      }
+
+      { type === 'doctor' &&
+        <div className="item-content">
+          <div className="top-item-content">
+            <div>
+              <h1>{data?.title}</h1>
+            </div>
+            {<Stars />}
+          </div>
+          <div>
+            <p dangerouslySetInnerHTML={{__html: data.content}}></p>
+          </div>
+
+          {data?.services && <div className="labels-wrap">
+            {data?.services.map((service) =>
+              <label
+                key={service.id}
+                htmlFor=""
+                className="uk-label bare">{service.title}
+              </label>
+            )}
+          </div>}
+        </div>
+      }
+
+
     </div>
   )
 }

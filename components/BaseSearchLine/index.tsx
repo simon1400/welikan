@@ -4,6 +4,7 @@ import Select from "../Select"
 
 interface BaseSearchLineProps {
   home?: boolean
+  setSearchQuery: Function
 }
 interface SearchProps {
   service: string,
@@ -11,7 +12,8 @@ interface SearchProps {
 }
 
 const BaseSearchLine: FC<BaseSearchLineProps> = ({
-  home = false
+  home = false,
+  setSearchQuery
 }) => {
 
   const [search, setSearch] = useState<SearchProps>({
@@ -21,30 +23,32 @@ const BaseSearchLine: FC<BaseSearchLineProps> = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch({
-      ...search, 
+      ...search,
       [e.target.name]: e.target.value
     })
+
+    setSearchQuery(e.target.value);
   }
 
   return (
     <div className={`base-search-line${home ? ' home' : ''}`}>
       <form action="">
-        <Input 
+        <Input
           name="service"
           img="/assets/search.svg"
-          placeholder="Услуга, город, название клиники..." 
-          onChange={handleChange} 
+          placeholder="Услуга, город, название клиники..."
+          onChange={handleChange}
           value={search.service} />
         {!home && <Input
           name="place"
           img="/assets/search.svg"
-          placeholder="Город, Страна" 
-          onChange={handleChange} 
+          placeholder="Город, Страна"
+          onChange={handleChange}
           value={search.place} />}
         {!home && <Select />}
       </form>
     </div>
-   
+
   )
 }
 

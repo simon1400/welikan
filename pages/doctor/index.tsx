@@ -10,6 +10,7 @@ import StockItem from "../../components/StockItem"
 import Certificates from "../../components/Certificates"
 import { NextPage } from "next"
 
+
 const Doctor: NextPage = () => {
   return (
     <Page>

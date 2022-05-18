@@ -6,17 +6,79 @@ import ShortItem from '../components/ShortItem'
 import StockItem from '../components/StockItem'
 import Slider from '../components/Slider'
 import Page from '../layout/Page'
+import { useLazyQuery, useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
+import { filteredDoctorListQuery } from '../queries/filteredDoctors'
+import { client, getStrapiURL } from '../lib/api'
+import { homePageQuery } from '../queries/homePage'
 
-const Home: NextPage = () => {
+
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: homePageQuery
+  });
+
+  return {
+    props: {
+      title: data.homePage.data.attributes.title,
+      doctors: data.homePage.data.attributes.doctors.data
+      // footer: data.homepage.data.attributes.footer
+    },
+ };
+}
+
+
+
+const Home: NextPage = ({title, doctors}) => {
+
+  console.log('doctors', doctors);
+
+  const searchCity: string = "г.Москва";
+
+  const [searchString, setSearchString] = useState<string>('');
+  let searchQuery: string = "";
+
+  const setSearchQuery = (query: string) => {
+    searchQuery = query;
+  }
+
+  const search = () => {
+    setSearchString(searchQuery);
+  }
+
+  // let { loading, error, data } = useQuery(navigationQuery); // global
+  let [getDoctors, {data: dataDoctors}] = useLazyQuery(filteredDoctorListQuery); // doctors
+
+  // useEffect(() => {
+  //   if(!loading) {
+  //     console.log('*data', data.navigation.data.attributes);
+  //   }
+  // }, [loading])
+
+  useEffect(() => {
+    getDoctors({variables:{query: searchString}})
+    console.log('dataDcotors', dataDoctors);
+  }, [searchString])
+
+  // if(loading) {
+  //   // return spinner
+  //   return <></>
+  // }
+
+  // if(error) {
+  //   console.error('index.tsx fetch data', error)
+  //   return <></>
+  // }
 
   return (
-    <Page>
+    <Page >
       <section className="search blue-bg">
         <div className="uk-container uk-container-small">
-          <h1>Поиск врачей, клиник и медицинских услуг в г.Москва</h1>
+          <h1>{title} {searchCity}</h1>
           <div className="form-wrap">
-            <BaseSearchLine home />
-            <div><a href="/asd" className="button accent">Найти</a></div>
+            <BaseSearchLine home setSearchQuery={setSearchQuery}/>
+            <div><a href="#" className="button accent" onClick={search}>Найти</a></div>
           </div>
         </div>
       </section>
@@ -55,10 +117,30 @@ const Home: NextPage = () => {
             <a href="/asd">Полный список</a>
           </div>
           <div className="uk-grid uk-child-width-1-2" uk-grid="">
+
+          {/* { socLinks?.map((item, index) =>
+                <li key={index} title={item.label}>
+                  <a href={item.link}>
+                    <img src={item.iconLink} alt={item.label} uk-svg="" />
+                  </a>
+                </li>
+              )} */}
+
+           {doctors.map((item, index) => 
+            <div key={index}>
+              <ShortItem
+                title={item.attributes.title}
+                city={item.attributes.city}
+                img={item.attributes.image.data.attributes}
+                services={item.attributes.services}
+                link={`doctor/${item.attributes.slug}`}
+                small review stars labels address phone email descr/>
+            </div>
+            )}
+
+            {/* <div><ShortItem small review stars labels address phone email descr/></div>
             <div><ShortItem small review stars labels address phone email descr/></div>
-            <div><ShortItem small review stars labels address phone email descr/></div>
-            <div><ShortItem small review stars labels address phone email descr/></div>
-            <div><ShortItem small review stars labels address phone email descr/></div>
+            <div><ShortItem small review stars labels address phone email descr/></div> */}
           </div>
         </div>
       </section>

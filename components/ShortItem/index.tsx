@@ -1,6 +1,8 @@
+import Link from 'next/link'
 import { FC } from "react"
 import CallModal from "../../layout/Modals/Call"
 import ReviewModal from "../../layout/Modals/Review"
+import { getStrapiMedia, Media } from '../../lib/api'
 import Stars from "../Stars"
 
 interface ShortItemProps {
@@ -15,6 +17,11 @@ interface ShortItemProps {
   address?: boolean,
   email?: boolean,
   phone?: boolean,
+  title?: string
+  city?:string
+  img?: Media
+  services? : any[]
+  link?: string;
 }
 
 const ShortItem: FC<ShortItemProps> = ({
@@ -29,32 +36,44 @@ const ShortItem: FC<ShortItemProps> = ({
   address = false,
   email = false,
   phone = false,
+  title,
+  city,
+  img,
+  services,
+  link
 }) => {
+
+
   return (
     <div className={`short-item item ${big ? "big" : small ? 'small' : xsmall ? "xsmall" : ''}`}>
       <div className="img-wrap">
-        <img src="/assets/stock-item.jpg" alt="Some photo" />
+        {/* Add correct link */}
+        <img src={`${img && getStrapiMedia(img)}`} alt={title} />
         {review && <a href="#modal-review" uk-toggle="" className={`button accent${small ? " small" : ""}`}>Оставить отзыв</a>}
       </div>
       <div className="item-content">
-        <div>
-          <div className="top-item-content">
-            {(small || big || xsmall) ? <h5>Фамилия Имя Отчество Врача</h5> : <h2>Фамилия Имя Отчество Врача</h2>}
-            {stars && <Stars />}
-            {time && <time>до 20.07.2021</time>}
-          </div>
-          {labels && <div className="labels-wrap">
-            <label htmlFor="" className="uk-label bare">Педиатрия</label>
-            <label htmlFor="" className="uk-label bare">Педиатрия</label>
-            <label htmlFor="" className="uk-label bare">Педиатрия</label>
-          </div>}
-          {descr && <div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor consectetur adipiscing elit,..</p>
-          </div>}
-        </div>
+
+        {link && <Link href={link}>
+          <a>
+            <div className="top-item-content">
+              {(small || big || xsmall) ? <h5>{title}</h5> : <h2>{title}</h2>}
+              {stars && <Stars />}
+              {time && <time>до 20.07.2021</time>}
+            </div>
+            {services && <div className="labels-wrap">
+              {services.map((service) =>
+                <label key={service.id} htmlFor="" className="uk-label bare">{service.title}</label>
+              )}
+            </div>}
+            {descr && <div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor consectetur adipiscing elit,..</p>
+            </div>}
+          </a>
+        </Link>}
+
         <div className="item-content-control">
           {address && <div>
-            <a href="/asd" className={`${(!big && !xsmall) ? "button small" : ''}`}>Клиника “Нова”, г.Москва</a>
+            <a href="/asd" className={`${(!big && !xsmall) ? "button small" : ''}`}>Клиника “Нова”, г.{city}</a>
           </div>}
           <div>
             {email && <a href="email:email@gmal.com" className={`button${small ? " icon" : big ? " uk-margin-small-right" : ""}`}>
