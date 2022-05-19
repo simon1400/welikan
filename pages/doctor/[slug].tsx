@@ -11,7 +11,8 @@ import Certificates from "../../components/Certificates"
 import { NextPage } from "next"
 import { useRouter } from 'next/router'
 import { client } from '../../lib/api'
-import { doctorQuery } from '../../queries/doctor'
+import { doctorQuery } from '../../queries/doctors/doctor'
+import { FC } from 'react'
 
 
 
@@ -21,22 +22,15 @@ export async function getServerSideProps({ query }) {
     variables: query
   });
 
-
-  console.log('*data', data);
-
-
   return {
     props: {
      doctor: data.doctors.data[0].attributes
-      // footer: data.homepage.data.attributes.footer
     }
  };
 }
 
-const Doctor: NextPage = ({doctor}) => {
-
+const Doctor: NextPage<FC> = ({doctor}) => {
   const reviews = doctor?.reviews?.data;
-  console.log('*doctor', doctor);
 
   return (
     <Page>

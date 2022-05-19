@@ -9,39 +9,37 @@ interface FullHeadItemProps {
 }
 
 const FullHeadItem: FC<FullHeadItemProps> = ({square = false, type="promotion", data}) => {
-
   const avatar = data?.image?.data?.attributes;
 
   return (
     <div className="full-head-item item">
       <div className={`img-wrap ${square ? 'square' : ''}`}>
-        <img  src={`${avatar && getStrapiMedia(avatar)}`} alt={data.title} />
+        <img  src={`${avatar && getStrapiMedia(avatar)}`} alt={data?.title} />
         {type === 'doctor' && <a href="" className="button accent">Оставить отзыв</a>}
       </div>
 
       { type === 'promotion' &&
         <div className="item-content">
-        <div className="labels-wrap">
-          <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
-          <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
-        </div>
+
+        {data.metkis.data?.length  && <div className="labels-wrap">
+            {data.metkis.data.map((metka, index) =>
+              <label
+                key={index}
+                htmlFor=""
+                className="uk-label bare">{metka.attributes.title}
+              </label>
+            )}
+          </div>}
         <div className="top-item-content">
           <div>
-            <time>до 20.07.2021</time>
-            <h1>Название этой акци помещается в две строки</h1>
+            <time>{data.createdAt}</time>
+            <h1>{data?.title}</h1>
           </div>
           {/* <Stars /> */}
         </div>
-        {/* <div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim ex neque, quis rutrum sapien eleifend ac. Vestibulum hendrerit tellus risus. Proin convallis fermentum consectetur. Sed dictum blandit enim, non tincidunt massa tincidunt quis. Curabitur pulvinar erat in bibendum rhoncus. Curabitur tempus diam a lobortis iaculis. Praesent eget dui eros. Curabitur ac tempus sem.</p>
-        </div> */}
         <div>
           <a href="" className="button">записаться</a>
         </div>
-        {/* <div className="labels-wrap">
-          <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
-          <label htmlFor="" className="uk-label bare">Бесплатный прием</label>
-        </div> */}
         </div>
       }
 
@@ -68,8 +66,6 @@ const FullHeadItem: FC<FullHeadItemProps> = ({square = false, type="promotion", 
           </div>}
         </div>
       }
-
-
     </div>
   )
 }

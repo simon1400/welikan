@@ -1,37 +1,18 @@
 import { gql } from "@apollo/client";
+import { companyList } from './companies/companies';
+import { doctorList } from './doctors/doctors';
+import { promotionList } from './promotions/promotions';
 
 export const homePageQuery = gql`
   query {
     homePage {
       data {
-        attributes{
+        attributes {
           title,
-          doctors {
-            data {
-              attributes {
-                slug,
-                title,
-                content
-                address {
-                  id,
-                  city
-                }
-                score,
-                services {
-                  id,
-                  title,
-                }
-                image {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
+          ${doctorList},
+          ${promotionList},
+          ${companyList}
+        }
       }
     }
-  }
 }`;

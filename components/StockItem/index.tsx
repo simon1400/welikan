@@ -1,34 +1,39 @@
 import { FC } from "react"
 import Link from 'next/link'
 import Stars from "../Stars"
+import { getStrapiMedia } from '../../lib/api'
 
 interface StockItemProps {
-  skydka: string
+  metka: string
   head: string
   content: string
   stars?: number
+  img: any;
+  slug: string;
 }
 
 const StockItem: FC<StockItemProps> = ({
-  skydka, 
-  head, 
+  metka,
+  head,
   content,
-  stars = 0
+  stars = 0,
+  img,
+  slug,
 }) => {
   return (
     <li>
-      <Link href="/stock/slug">
+      <Link href={`/stock/${slug}`}>
         <a className="stock-item">
           <div className="img-wrap">
-            <img src="/assets/stock-item.jpg" alt="Stock item base" />
+          <img src={`${img && getStrapiMedia(img)}`} alt={head} />
             {!!stars && <Stars />}
           </div>
           <div className="uk-flex uk-flex-between">
             <h4>{head}</h4>
-            <div><label htmlFor="" className="uk-label bare">Скидка {skydka}</label></div>
+            { metka &&<div><label htmlFor="" className="uk-label bare">{metka}</label></div>}
           </div>
           <div>
-            <p>{content}</p>
+          <p dangerouslySetInnerHTML={{__html: content}}></p>
           </div>
         </a>
       </Link>

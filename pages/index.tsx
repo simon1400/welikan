@@ -8,8 +8,8 @@ import Slider from '../components/Slider'
 import Page from '../layout/Page'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
-import { filteredDoctorListQuery } from '../queries/filteredDoctors'
-import { client, getStrapiURL } from '../lib/api'
+import { filteredDoctorListQuery } from '../queries/doctors/filteredDoctors'
+import { client } from '../lib/api'
 import { homePageQuery } from '../queries/homePage'
 
 
@@ -22,17 +22,19 @@ export async function getServerSideProps() {
   return {
     props: {
       title: data.homePage.data.attributes.title,
-      doctors: data.homePage.data.attributes.doctors.data
-      // footer: data.homepage.data.attributes.footer
+      doctors: data.homePage.data.attributes.doctors.data,
+      promotions: data.homePage.data.attributes.promotions.data,
+      institutions: data.homePage.data.attributes.institutions.data
     },
  };
 }
 
 
 
-const Home: NextPage = ({title, doctors}) => {
+const Home: NextPage = ({title, doctors, promotions, institutions}) => {
 
   console.log('doctors', doctors);
+  console.log('*institutions', institutions);
 
   const searchCity: string = "г.Москва";
 
@@ -46,30 +48,6 @@ const Home: NextPage = ({title, doctors}) => {
   const search = () => {
     setSearchString(searchQuery);
   }
-
-  // let { loading, error, data } = useQuery(navigationQuery); // global
-  let [getDoctors, {data: dataDoctors}] = useLazyQuery(filteredDoctorListQuery); // doctors
-
-  // useEffect(() => {
-  //   if(!loading) {
-  //     console.log('*data', data.navigation.data.attributes);
-  //   }
-  // }, [loading])
-
-  useEffect(() => {
-    getDoctors({variables:{query: searchString}})
-    console.log('dataDcotors', dataDoctors);
-  }, [searchString])
-
-  // if(loading) {
-  //   // return spinner
-  //   return <></>
-  // }
-
-  // if(error) {
-  //   console.error('index.tsx fetch data', error)
-  //   return <></>
-  // }
 
   return (
     <Page >
@@ -88,14 +66,16 @@ const Home: NextPage = ({title, doctors}) => {
       <section className="small-sec uk-visible@m">
         <div className="uk-container">
           <Slider>
-            <StockItem head="trusu" content="faini" skydka="10%" />
-            <StockItem head="miki" stars={3} content="super" skydka="20" />
-            <StockItem head="tuzik" content="loh" skydka="324" />
-            <StockItem head="golf" content="vin" skydka="24" />
-            <StockItem head="golf" content="vin" skydka="24" />
-            <StockItem head="golf" content="vin" skydka="24" />
-            <StockItem head="golf" content="vin" skydka="24" />
-            <StockItem head="golf" content="vin" skydka="24" />
+          {promotions.map((item, index) => 
+              <StockItem key={index}
+                head={item.attributes.title}
+                content={item.attributes.content}
+                img={item.attributes.image.data.attributes}
+                stars={item.attributes.rating}
+                metka={item.attributes.metkis.data[0]?.attributes.title}
+                slug={item.attributes.slug}
+              />
+            )}
           </Slider>
         </div>
       </section>
