@@ -27,9 +27,7 @@ const StockItem: FC<StockItemProps> = ({
             <h4>{head}</h4>
             <div><label htmlFor="" className="uk-label bare">Скидка {skydka}</label></div>
           </div>
-          <div>
-            <p>{content}</p>
-          </div>
+          <div dangerouslySetInnerHTML={{__html: content}} />
         </a>
       </Link>
     </li>

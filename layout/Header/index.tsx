@@ -2,10 +2,20 @@ import {FC, useState} from 'react'
 import Link from 'next/link'
 import MobileMenu from '../../components/MobileMenu'
 import Hamburger from '../../components/Hamburger'
+import topNavQuery from '../../queries/topNav'
+import { useQuery } from '@apollo/client'
 
 const Header: FC = () => {
 
+  const { loading, error, data } = useQuery(topNavQuery);
   const [menu, setMenu] = useState(false)
+
+  if(loading) {
+    return null
+  }
+
+  const topNav = data.global.data.attributes.topNav
+  const phone = data.global.data.attributes.phone
 
   return (
     <header>
@@ -18,17 +28,11 @@ const Header: FC = () => {
           </Link>
           <nav className="desktopMenu">
             <ul className="uk-visible@m">
-              <li><Link href="/admin/123"><a>Больница</a></Link></li>
-              {/* <li><Link href="/client/123"><a>Клиент</a></Link></li> */}
-              <li><Link href="/company"><a>Комп</a></Link></li>
-              <li><Link href="/doctor"><a>Док</a></Link></li>
-              <li><Link href="/proposing"><a>Предл</a></Link></li>
-              <li><Link href="/search"><a>Поиск</a></Link></li>
-              {/* <li><Link href="/stock"><a>Акции</a></Link></li> */}
+              {topNav.map((item, index) => <li key={index}><Link href={item.url}><a>{item.title}</a></Link></li>)}
             </ul>
             <div><a href="/ad" className="button accent">Заказать услугу</a></div>
             <div className="contact-top uk-visible@m">
-              <a href="/asd" className="button link">8 (800) 999 99 99</a>
+              <a href="/asd" className="button link">{phone}</a>
               <a href="/asd">Заказать звонок</a>
             </div>
           </nav>

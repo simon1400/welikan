@@ -1,6 +1,18 @@
 import {FC} from 'react'
+import { useQuery } from '@apollo/client'
+import footerQuery from '../../queries/footer';
 
 const Footer: FC = () => {
+
+  const { loading, error, data } = useQuery(footerQuery);
+
+  if(loading) {
+    return null
+  }
+
+  const footerNav = data.global.data.attributes.footerNav
+  const techLinks = data.global.data.attributes.techLinks
+
   return (
     <footer>
       <div className="uk-container">
@@ -15,28 +27,14 @@ const Footer: FC = () => {
               <li><a href="/asd">Политика конфиденциальности</a></li>
             </ul>
           </div>
-          <div>
+          {footerNav.map((item, index) => <div key={index}>
             <nav>
               <ul>
-                <li>Menu Title</li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
+                <li>{item.title}</li>
+                {item.item.map((itemNav, indexNav) => <li key={"item-"+indexNav}><a href={itemNav.url}>{itemNav.title}</a></li>)}
               </ul>
             </nav>
-          </div>
-          <div>
-            <nav>
-              <ul>
-                <li>Menu Title</li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-                <li><a href="">Text Texttext</a></li>
-              </ul>
-            </nav>
-          </div>
+          </div>)}
           <div>
             <nav className="soc-nav">
               <ul>
