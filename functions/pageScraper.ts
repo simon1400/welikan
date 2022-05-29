@@ -1,7 +1,7 @@
 import fs from 'fs'
-import linksDoctors1 from '../scribing/urlDoctors.json'
-import linksDoctors2 from '../scribing/urlDoctors2.json'
-import linksDoctors3 from '../scribing/urlDoctors3.json'
+// import linksDoctors1 from '../scribing/urlDoctors.json'
+// import linksDoctors2 from '../scribing/urlDoctors2.json'
+// import linksDoctors3 from '../scribing/urlDoctors3.json'
 
 interface IResult {
   name: string;
@@ -57,9 +57,9 @@ const scraperObject = {
   // @ts-ignore
 	async scraper(browser){
     const dataArr = [
-      linksDoctors1[0].links,
-      linksDoctors2[0].links,
-      linksDoctors3[0].links,
+      // linksDoctors1[0].links,
+      // linksDoctors2[0].links,
+      // linksDoctors3[0].links,
     ]
     async function scrapeCurrentPage(data: any[]): Promise<any> {
       const dataResult: any[] = [];

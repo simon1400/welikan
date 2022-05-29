@@ -1,5 +1,5 @@
 import fs from 'fs'
-import clinicsLinks from '../scribing/urlClinics.json'
+// import clinicsLinks from '../scribing/urlClinics.json'
 
 interface IResult {
   title: string,
@@ -197,7 +197,7 @@ const scraperObject = {
       return {dataResult, dataCrash};
     }
 
-    let data = await scrapeCurrentPage(clinicsLinks[0].links);
+    let data = await scrapeCurrentPage([]);
     fs.writeFile(`scribing/clinics1.json`, JSON.stringify({dataResult: data.dataResult}), (err) => {
       if (err) throw err;
       console.log(`File clinics.json is created successfully.`);
