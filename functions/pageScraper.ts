@@ -56,11 +56,11 @@ const blockResources = [
 const scraperObject = {
   // @ts-ignore
 	async scraper(browser){
-    const dataArr = [
-      // linksDoctors1[0].links,
-      // linksDoctors2[0].links,
-      // linksDoctors3[0].links,
-    ]
+    // const dataArr = [
+    //   // linksDoctors1[0].links,
+    //   // linksDoctors2[0].links,
+    //   // linksDoctors3[0].links,
+    // ]
     async function scrapeCurrentPage(data: any[]): Promise<any> {
       const dataResult: any[] = [];
       let successLength = 0
@@ -120,29 +120,29 @@ const scraperObject = {
 
       let dataLength = data.length
             
-      for(let a = 0; a < dataLength; a++){
-        if(!!data[a]){
-          let currentPageData = await pagePromise(data[a]);          
-          if(!currentPageData?.notFound) {
-            dataResult.push(currentPageData);
-            successLength++
-          }
-        }
-        process.stdout.write(`\r${a+1}/${dataLength} - done ${successLength}`)
-      }
+      // for(let a = 0; a < dataLength; a++){
+      //   if(!!data[a]){
+      //     let currentPageData = await pagePromise(data[a]);          
+      //     if(!currentPageData?.notFound) {
+      //       dataResult.push(currentPageData);
+      //       successLength++
+      //     }
+      //   }
+      //   process.stdout.write(`\r${a+1}/${dataLength} - done ${successLength}`)
+      // }
 
       console.log(`\nSuccess doctors ${successLength} from ${dataLength}`);
       
       return dataResult;
     }
     let data;
-    for(let i = 0; i < dataArr.length; i++) {
-      data = await scrapeCurrentPage(dataArr[i]);
-      fs.writeFile(`scribing/doctors${i+1}.json`, JSON.stringify(data), (err) => {
-        if (err) throw err;
-        console.log(`File doctors${i+1}.json is created successfully.`);
-      });
-    }
+    // for(let i = 0; i < dataArr.length; i++) {
+    //   data = await scrapeCurrentPage(dataArr[i]);
+    //   fs.writeFile(`scribing/doctors${i+1}.json`, JSON.stringify(data), (err) => {
+    //     if (err) throw err;
+    //     console.log(`File doctors${i+1}.json is created successfully.`);
+    //   });
+    // }
 
     
     return data;

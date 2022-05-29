@@ -60,15 +60,15 @@ const blockResources = [
 ]
 
 
-const isElementVisible = async (page, cssSelector) => {
-  let visible = true;
-  await page
-    .waitForSelector(cssSelector, { visible: true, timeout: 2000 })
-    .catch(() => {
-      visible = false;
-    });
-  return visible;
-};
+// const isElementVisible = async (page, cssSelector) => {
+//   let visible = true;
+//   await page
+//     .waitForSelector(cssSelector, { visible: true, timeout: 2000 })
+//     .catch(() => {
+//       visible = false;
+//     });
+//   return visible;
+// };
 
 const scraperObject = {
   // @ts-ignore
@@ -155,13 +155,13 @@ const scraperObject = {
               dataObj.price_diagnostics.push(await newPage.$$eval('div.ClinicPagePriceBlock__price-item_3prZ div.ClinicPagePriceBlock__price-value_3Dot', (items: any) => items.map((el: any) => el?.innerText)))
             }
             
-            let loadMoreVisible = await isElementVisible(newPage, "button.async-cards__button");
-            while (loadMoreVisible) {
-              await newPage
-                .click("button.async-cards__button")
-                .catch(() => {});
-              loadMoreVisible = await isElementVisible(newPage, "button.async-cards__button");
-            }
+            // let loadMoreVisible = await isElementVisible(newPage, "button.async-cards__button");
+            // while (loadMoreVisible) {
+            //   await newPage
+            //     .click("button.async-cards__button")
+            //     .catch(() => {});
+            //   loadMoreVisible = await isElementVisible(newPage, "button.async-cards__button");
+            // }
 
             dataObj.doctors = await newPage.$$eval('.doctor-list-page-card .doctor-list-page-card__details--normal a', (items: any) => items.map((el: any) => el?.innerText))
             dataObj.specialists_in_clinics = await newPage.$$eval('div[data-test-id="adaptive-tabs__content"] div[data-test-id="clinic-page-specialists__specialist-list"] a', (items: any) => items.map((el: any) => el?.innerText))
@@ -181,16 +181,16 @@ const scraperObject = {
 
       let dataLength = data.length
             
-      for(let a = 0; a < dataLength; a++){
-        if(!!data[a]){
-          let currentPageData = await pagePromise(data[a]);          
-          if(!currentPageData?.notFound) {
-            dataResult.push(currentPageData);
-            successLength++
-          }
-        }
-        process.stdout.write(`\r${a+1}/${dataLength} - done ${successLength}`)
-      }
+      // for(let a = 0; a < dataLength; a++){
+      //   if(!!data[a]){
+      //     let currentPageData = await pagePromise(data[a]);          
+      //     if(!currentPageData?.notFound) {
+      //       dataResult.push(currentPageData);
+      //       successLength++
+      //     }
+      //   }
+      //   process.stdout.write(`\r${a+1}/${dataLength} - done ${successLength}`)
+      // }
 
       console.log(`\nSuccess doctors ${successLength} from ${dataLength}`);
       
