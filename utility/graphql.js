@@ -1,4 +1,4 @@
-import { ApolloClient, createHttpLink, ApolloProvider, InMemoryCache, DefaultOptions } from "@apollo/client";
+import { ApolloClient, createHttpLink, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import Cookies from 'js-cookie'
 
