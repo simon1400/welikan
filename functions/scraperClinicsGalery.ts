@@ -1,5 +1,5 @@
 import fs from 'fs'
-import clinicsLinks from '../scribing/urlClinics.json'
+// import clinicsLinks from '../scribing/urlClinics.json'
 
 interface IResult {
   title: string;
@@ -115,18 +115,18 @@ const scraperObject = {
       return {dataResult, dataCrash};
     }
 
-    let data = await scrapeCurrentPage(clinicsLinks[0].links);
-    fs.writeFile(`scribing/clinicsGalery.json`, JSON.stringify({dataResult: data.dataResult}), (err) => {
-      if (err) throw err;
-      console.log(`File clinics.json is created successfully.`);
-    });
-    fs.writeFile(`scribing/clinics-galery-crash.json`, JSON.stringify({dataCrash: data.dataCrash}), (err) => {
-      if (err) throw err;
-      console.log(`File clinics.json is created successfully.`);
-    });
+    // let data = await scrapeCurrentPage(clinicsLinks[0].links);
+    // fs.writeFile(`scribing/clinicsGalery.json`, JSON.stringify({dataResult: data.dataResult}), (err) => {
+    //   if (err) throw err;
+    //   console.log(`File clinics.json is created successfully.`);
+    // });
+    // fs.writeFile(`scribing/clinics-galery-crash.json`, JSON.stringify({dataCrash: data.dataCrash}), (err) => {
+    //   if (err) throw err;
+    //   console.log(`File clinics.json is created successfully.`);
+    // });
 
     
-    return data;
+    // return data;
 	}
 }
 

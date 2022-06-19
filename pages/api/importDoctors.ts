@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import slugify from 'slugify';
 import parseImageName from '../../functions/parseImg';
 import spec from '../../functions/specifications';
-import doctor1 from '../../scribingoriginal/doctors1.json'
+// import doctor1 from '../../scribingoriginal/doctors1.json'
 
 // const API = 'https://welikan-strapi.pechunka.com'
 const API = 'http://localhost:1341'
@@ -55,7 +55,7 @@ export default async function handler(
 ) {
   if(req.method === 'POST') {
 
-    const length = doctor1.length;
+    // const length = doctor1.length;
 
     let specID: number[] = [], imgName, expirience;
 
@@ -63,7 +63,7 @@ export default async function handler(
 
       // specID = await spec(doctor1[i].specializations)
 
-      imgName = parseImageName(doctor1[i].imageUrl)
+      // imgName = parseImageName(doctor1[i].imageUrl)
 
       let resImg = await axios.get(`${API}/upload/files`)
 
