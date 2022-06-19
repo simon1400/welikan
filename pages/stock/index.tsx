@@ -11,7 +11,7 @@ const Stock: NextPage = () => {
       </div>
       <section>
         <div className="uk-container">
-          <ShortItem time descr email />
+          {/* <ShortItem time descr email /> */}
         </div>
       </section>
     </Page>

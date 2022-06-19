@@ -24,10 +24,10 @@ const Proposing: NextPage = () => {
                   <Select />
                 </div>
               </div>
+              {/* <ShortItem big descr address email phone labels stars review />
               <ShortItem big descr address email phone labels stars review />
               <ShortItem big descr address email phone labels stars review />
-              <ShortItem big descr address email phone labels stars review />
-              <ShortItem big descr address email phone labels stars review />
+              <ShortItem big descr address email phone labels stars review /> */}
               <Pagination />
             </div>
           </div>

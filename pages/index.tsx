@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import BaseSearchLine from '../components/BaseSearchLine'
-import DirectionList from '../components/DirectionList'
+// import DirectionList from '../components/DirectionList'
 import Map from '../components/Map'
 import ShortItem from '../components/ShortItem'
 import StockItem from '../components/StockItem'
@@ -9,6 +9,9 @@ import Page from '../layout/Page'
 import { client } from '../utility/graphql'
 import homepageQuery from '../queries/homepage'
 import { useEffect, useState } from 'react'
+// import axios from 'axios'
+// import doctor1 from '../../scribingoriginal/doctors1.json'
+import t from '../data/translations.json'
 
 export async function getServerSideProps() {
   const { data } = await client.query({
@@ -30,8 +33,9 @@ const Home: NextPage = ({
   const [city, setCity] = useState("Москва")
   const [geo, setGeo] = useState(false)
 
-  console.log(data);
-  
+  useEffect(() => {
+    // axios.post('http://localhost:3008/api/importDoctor').then(res => console.log(res.data)).catch(err => console.error(err))
+  }, [])
 
   // const successfulLookup = position => {
   //   const { latitude, longitude } = position.coords;
@@ -58,7 +62,7 @@ const Home: NextPage = ({
           <h1>{data.title} {city}</h1>
           <div className="form-wrap">
             <BaseSearchLine home />
-            <div><a href="/asd" className="button accent">Найти</a></div>
+            <div><a href="/asd" className="button accent">{t.find}</a></div>
           </div>
         </div>
       </section>
@@ -66,15 +70,16 @@ const Home: NextPage = ({
         <Map />
       </div>
       <section className="small-sec uk-visible@m">
-        <div className="uk-container">
+      {!!data.promotions.length && <div className="uk-container">
           <Slider>
+            {/* @ts-ignore */}
             {data.promotions.data.map((item, index) => <StockItem 
               key={index} 
               head={item.attributes.title} 
               content={item.attributes.content}
               skydka={item.attributes.metkis?.data[0].attributes.title} />)}
           </Slider>
-        </div>
+        </div>}
       </section>
       {/* <section className="bg-grey">
         <div className="uk-container">
@@ -87,13 +92,14 @@ const Home: NextPage = ({
           <div className="uk-text-center uk-margin-top"><a className="button bare" href="/asd">Еще +20</a></div>
         </div>
       </section> */}
-      <section>
-        <div className="uk-container">
+       <section>
+       {!!data.doctors.data.length && <div className="uk-container">
           <div className="section-head">
             <h2>Врачи</h2>
             <a href="/asd">Полный список</a>
           </div>
           <div className="uk-grid uk-child-width-1-2" uk-grid="">
+            {/* @ts-ignore */}
             {data.doctors.data.map((item, index) => <div key={index}>
               <ShortItem 
                 small 
@@ -108,15 +114,16 @@ const Home: NextPage = ({
               />
             </div>)}
           </div>
-        </div>
+        </div>}
       </section>
       <section>
-        <div className="uk-container">
+        {!!data.institutions.data.length && <div className="uk-container">
           <div className="section-head">
             <h2>Клиники</h2>
             <a href="/asd">Полный список</a>
           </div>
           <div className="uk-grid uk-child-width-1-2" uk-grid="">
+            {/* @ts-ignore */}
             {data.institutions.data.map((item, index) => <div key={index}>
               <ShortItem 
                 small 
@@ -131,7 +138,7 @@ const Home: NextPage = ({
               />
             </div>)}
           </div>
-        </div>
+        </div>}
       </section>
     </Page>
   )

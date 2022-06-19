@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-// import browserObject from '../../functions/browser';
-// import scraperController from '../../functions/pageController';
+import browserObject from '../../functions/browser';
+import scraperController from '../../functions/pageController';
 
 type Doctor = {
   name: string;
@@ -17,10 +17,10 @@ export default async function handler(
   if(req.method === 'GET') {
     //Start the browser and create a browser instance
     // @ts-ignore
-    // let browserInstance = browserObject.startBrowser();
+    let browserInstance = browserObject.startBrowser();
 
     // // Pass the browser instance to the scraper controller
-    // scraperController(browserInstance)
+    scraperController(browserInstance)
     
     res.status(200).end()
   }else{

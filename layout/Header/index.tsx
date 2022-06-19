@@ -28,7 +28,7 @@ const Header: FC = () => {
           </Link>
           <nav className="desktopMenu">
             <ul className="uk-visible@m">
-              {topNav.map((item, index) => <li key={index}><Link href={item.url}><a>{item.title}</a></Link></li>)}
+              {topNav.map((item: any, index: number) => <li key={index}><Link href={item.url}><a>{item.title}</a></Link></li>)}
             </ul>
             <div><a href="/ad" className="button accent">Заказать услугу</a></div>
             <div className="contact-top uk-visible@m">

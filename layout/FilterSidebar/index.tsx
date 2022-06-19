@@ -25,9 +25,9 @@ const FilterSidebar: FC = () => {
       <h5>Вид учреждения</h5>
       <MultiCheckbox />
       <h3>Акции</h3>
+      {/* <StockItem />
       <StockItem />
-      <StockItem />
-      <StockItem />
+      <StockItem /> */}
     </div>
   )
 }

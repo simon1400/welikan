@@ -90,10 +90,10 @@ const Doctor: NextPage = () => {
                 </div>
               </div>
               <h2>Акции</h2>
+              {/* <StockItem />
               <StockItem />
               <StockItem />
-              <StockItem />
-              <StockItem />
+              <StockItem /> */}
               <h2>Лицензии</h2>
               <Certificates />
               <Certificates />

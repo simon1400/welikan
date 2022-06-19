@@ -62,13 +62,7 @@ const homepageQuery = gql`
                   }
                 }
                 slug
-                address {
-                  street
-                  houseNr
-                  city
-                  zip
-                  country
-                }
+                address
                 content
               }
             }

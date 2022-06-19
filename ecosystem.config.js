@@ -3,20 +3,19 @@ module.exports = {
     name   : "Welikan client",
     script : "yarn start",
     env_production: {
-      APP_API: "http://welikan-strapi.hardart.cz/",
-      APP_DOMAIN: "http://welikan.hardart.cz"
+      APP_API: "https://strapi.wellikan.com",
+      APP_DOMAIN: "https://wellikan.com"
     }
   }],
 
   deploy : {
     production : {
       user : 'dimi',
-      host : ['89.221.216.23'],
+      host : ['51.250.18.9'],
       ref  : 'origin/main',
       repo : 'git@github.com:simon1400/welikan.git',
-      path : '/var/www/welikan/client',
-      // 'pre-deploy-local': 'git add . && git commit -m "pm2 deploy auto commit" && git push origin main',
-      'post-deploy' : 'yarn && yarn build && pm2 reload ecosystem.config.js --env production',
+      path : '/var/app/client',
+      'post-deploy' : 'npm i && npm run build && pm2 reload ecosystem.config.js --env production',
     }
   }
 };

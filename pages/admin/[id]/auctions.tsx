@@ -17,9 +17,9 @@ const Auctions: NextPage = () => {
           <Select />
         </div>
       </div>
+      {/* <ShortItem descr labels email time/>
       <ShortItem descr labels email time/>
-      <ShortItem descr labels email time/>
-      <ShortItem descr labels email time/>
+      <ShortItem descr labels email time/> */}
       <Pagination />
     </Page>
   )

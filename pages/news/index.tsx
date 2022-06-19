@@ -11,7 +11,7 @@ const News: NextPage = () => {
       </div>
       <section>
         <div className="uk-container">
-          <ShortItem time descr address />
+          {/* <ShortItem time descr address /> */}
         </div>
       </section>
     </Page>

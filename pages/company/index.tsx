@@ -25,10 +25,10 @@ const Company: NextPage = () => {
               <NavContent />
               <h2>Врачи</h2>
               <div className="uk-grid uk-child-width-1-1 uk-child-width-1-2@s" uk-grid="">
+                {/* <div><ShortItem small review descr address /></div>
                 <div><ShortItem small review descr address /></div>
                 <div><ShortItem small review descr address /></div>
-                <div><ShortItem small review descr address /></div>
-                <div><ShortItem small review descr address /></div>
+                <div><ShortItem small review descr address /></div> */}
               </div>
               <div className="uk-text-center uk-margin-large-top"><a className="button bare" href="/asd">Еще +20</a></div>
               <h2>Услуги</h2>
@@ -78,7 +78,7 @@ const Company: NextPage = () => {
                 </div>
               </div>
               <h2>Акции</h2>
-              <StockItem />
+              {/* <StockItem /> */}
               <h2>Лицензии</h2>
               <Certificates />
             </div>

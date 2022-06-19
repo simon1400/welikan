@@ -27,11 +27,11 @@ const Footer: FC = () => {
               <li><a href="/asd">Политика конфиденциальности</a></li>
             </ul>
           </div>
-          {footerNav.map((item, index) => <div key={index}>
+          {footerNav.map((item: any, index: number) => <div key={index}>
             <nav>
               <ul>
                 <li>{item.title}</li>
-                {item.item.map((itemNav, indexNav) => <li key={"item-"+indexNav}><a href={itemNav.url}>{itemNav.title}</a></li>)}
+                {item.item.map((itemNav: any, indexNav: number) => <li key={"item-"+indexNav}><a href={itemNav.url}>{itemNav.title}</a></li>)}
               </ul>
             </nav>
           </div>)}
