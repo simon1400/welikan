@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name   : "Welikan client",
-    script : "yarn start",
+    script : "npm start",
     env_production: {
       APP_API: "https://strapi.wellikan.com",
       APP_DOMAIN: "https://wellikan.com"
