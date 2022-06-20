@@ -2,6 +2,8 @@ import { ChangeEvent, FC, useState } from "react"
 import Input from "../Input"
 import Select from "../Select"
 
+import t from '../../data/translations.json'
+
 interface BaseSearchLineProps {
   home?: boolean
 }
@@ -32,13 +34,13 @@ const BaseSearchLine: FC<BaseSearchLineProps> = ({
         <Input 
           name="service"
           img="/assets/search.svg"
-          placeholder="Услуга, город, название клиники..." 
+          placeholder={t.searchService} 
           onChange={handleChange} 
           value={search.service} />
         {!home && <Input
           name="place"
           img="/assets/search.svg"
-          placeholder="Город, Страна" 
+          placeholder={`${t.city}, ${t.country}`} 
           onChange={handleChange} 
           value={search.place} />}
         {!home && <Select />}

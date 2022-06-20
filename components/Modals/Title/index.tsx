@@ -1,6 +1,8 @@
 import { ChangeEvent, FC, useState } from "react"
 import Input from "../../Input"
 
+import t from '../../../data/translations.json'
+
 interface TitleAuthProps {
   title: string,
   subTitle?: string,
@@ -28,7 +30,7 @@ const TitleAuth: FC<TitleAuthProps> = ({
       </div>
       {search && <div className="search-modal">
         <Input 
-          placeholder="Поиск..."
+          placeholder={`${t.search}...`}
           value={searchValue}
           img="/assets/search.svg"
           radius

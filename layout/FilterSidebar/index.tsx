@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState } from "react"
 import Input from "../../components/Input"
 import MultiCheckbox from "../../components/MultiCheckbox"
 import StockItem from "../../components/StockItem"
+import t from '../../data/translations.json'
 
 const FilterSidebar: FC = () => {
 
@@ -15,16 +16,16 @@ const FilterSidebar: FC = () => {
     <div className="filter-sidebar">
       <h5>Район/метро</h5>
       <Input 
-        placeholder="Поиск..."
+        placeholder={`${t.search}...`}
         img="/assets/search.svg"
         value={search} 
         onChange={e => handleSearchChange(e)} 
         name="search"  />
-      <h5>Специализация</h5>
+      <h5>{t.specialization}</h5>
       <MultiCheckbox />
-      <h5>Вид учреждения</h5>
+      <h5>{t.typeInstitution}</h5>
       <MultiCheckbox />
-      <h3>Акции</h3>
+      <h3>{t.promotions}</h3>
       {/* <StockItem />
       <StockItem />
       <StockItem /> */}

@@ -3,6 +3,7 @@ import Input from "../../../../components/Input";
 import TitleAuth from "../../../../components/Modals/Title";
 import ModalClose from "../../../../components/Modals/Close";
 import WrapModal from "../../Wrap";
+import t from "../../../../data/translations.json"
 
 const Login: FC = () => {
 
@@ -25,7 +26,7 @@ const Login: FC = () => {
       className="auth-modal"
       size = "xsmall-modal"
       id="modal-login"
-      footer={<a href="" className="button">Войти</a>}
+      footer={<a href="" className="button">{t.login}</a>}
     >
       <TitleAuth title="Вход" subTitle="Еще не зарегистрированы? Регистрация" />
       <div className="modal-input"><Input placeholder="ФИО" name="name" onChange={handleChange} value={values.name} /></div>

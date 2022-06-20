@@ -2,6 +2,7 @@ import { FC } from "react"
 import CallModal from "../../layout/Modals/Call"
 import ReviewModal from "../../layout/Modals/Review"
 import Stars from "../Stars"
+import t from '../../data/translations.json'
 
 const APP_API = process.env.APP_API
 
@@ -41,7 +42,7 @@ const ShortItem: FC<ShortItemProps> = ({
     <div className={`short-item item ${big ? "big" : small ? 'small' : xsmall ? "xsmall" : ''}`}>
       <div className="img-wrap">
         {image && <img src={`${APP_API}${image.url}`} alt="Some photo" />}
-        {review && <a href="#modal-review" uk-toggle="" className={`button accent${small ? " small" : ""}`}>Оставить отзыв</a>}
+        {review && <a href="#modal-review" uk-toggle="" className={`button accent${small ? " small" : ""}`}>{t.leaveReview}</a>}
       </div>
       <div className="item-content">
         <div>
@@ -61,11 +62,11 @@ const ShortItem: FC<ShortItemProps> = ({
           </div>}
           <div>
             {email && <a href={`mailto:${email}`} className={`button${small ? " icon" : big ? " uk-margin-small-right" : ""}`}>
-              {small ? <img src="/assets/envelope.svg" alt="Envelope" uk-svg="" /> : "оставить заявку"}
+              {small ? <img src="/assets/envelope.svg" alt="Envelope" uk-svg="" /> : t.leaveRequest}
             </a>}
             {phone && <a href="#modal-call" className={`button${small ? " icon" : big ? " bare" : ""}`} uk-toggle="">
               <img src="/assets/phone.svg" alt="Phone" uk-svg="" />
-              {big && "позвонить"}
+              {big && t.call}
             </a>}
           </div>
         </div>

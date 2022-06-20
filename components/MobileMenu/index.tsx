@@ -1,5 +1,5 @@
 import { FC } from "react"
-
+import t from '../../data/translations.json'
 interface MobileMenuProps {
   show: boolean
 }
@@ -20,7 +20,7 @@ const MobileMenu: FC<MobileMenuProps> = ({
         </ul>
         <ul className="info-menu">
           <li><a href="">8 (800) 999 99 99</a></li>
-          <li><a href="">Заказать звонок</a></li>
+          <li><a href="">{t.orderCall}</a></li>
         </ul>
         <ul className="soc-nav">
           <li><a href=""><img src="/assets/twitter.svg" alt="" uk-svg="" /></a></li>

@@ -1,6 +1,8 @@
 import { FC } from "react";
 import Steps from "../Steps";
 
+import t from '../../data/translations.json'
+
 interface StepsProps {
   title: String,
   date: String,
@@ -24,7 +26,7 @@ const Order: FC<OrderProps> = ({
           <h2>Общий анализ крови - Заказ № 365</h2>
         </div>
         <div>
-          <a href="" className="button bare small">Статус: Выполняется</a>
+          <a href="" className="button bare small">{t.status}: {t.inProgress}</a>
         </div>
       </div>
       <div className="order-content">

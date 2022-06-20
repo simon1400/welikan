@@ -4,6 +4,7 @@ import MobileMenu from '../../components/MobileMenu'
 import Hamburger from '../../components/Hamburger'
 import topNavQuery from '../../queries/topNav'
 import { useQuery } from '@apollo/client'
+import t from '../../data//translations.json'
 
 const Header: FC = () => {
 
@@ -30,10 +31,10 @@ const Header: FC = () => {
             <ul className="uk-visible@m">
               {topNav.map((item: any, index: number) => <li key={index}><Link href={item.url}><a>{item.title}</a></Link></li>)}
             </ul>
-            <div><a href="/ad" className="button accent">Заказать услугу</a></div>
+            <div><a href="/ad" className="button accent">{t.orderService}</a></div>
             <div className="contact-top uk-visible@m">
               <a href="/asd" className="button link">{phone}</a>
-              <a href="/asd">Заказать звонок</a>
+              <a href="/asd">{t.orderCall}</a>
             </div>
           </nav>
           <div className="control-top">
@@ -41,7 +42,7 @@ const Header: FC = () => {
               <li>
                 <a href="#modal-login" className="button link" uk-toggle="">
                   <img src="/assets/user-alt.svg" alt="" uk-svg="" />
-                  <span className="uk-visible@m">войти</span>
+                  <span className="uk-visible@m">{t.login}</span>
                 </a>
               </li>
               <li><a href="#modal-local" uk-toggle="">RU</a></li>

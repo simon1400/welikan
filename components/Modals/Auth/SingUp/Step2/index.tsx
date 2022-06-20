@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState } from "react"
 import Input from "../../../../Input"
 import Select from "../../../../Select"
 import ContainerAuth from "../../Container"
+import t from '../../../../../data/translations.json'
 
 const Step2: FC = () => {
 
@@ -16,9 +17,9 @@ const Step2: FC = () => {
   }
 
   return (
-    <ContainerAuth title="Введите данные">
-      <div className="modal-input"><Input placeholder="ФИО" name="name" onChange={handleChange} value={values.name} /></div>
-      <div className="modal-input"><Input placeholder="ФИО" name="name" onChange={handleChange} value={values.name} /></div>
+    <ContainerAuth title={t.enterInfo}>
+      <div className="modal-input"><Input placeholder={t.fullName} name="name" onChange={handleChange} value={values.name} /></div>
+      <div className="modal-input"><Input placeholder={t.fullName} name="name" onChange={handleChange} value={values.name} /></div>
       <div className="modal-input"><Select /></div>
       <div className="modal-input"><Select /></div>
     </ContainerAuth>

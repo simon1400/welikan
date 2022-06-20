@@ -1,11 +1,12 @@
 import { FC } from "react";
+import t from '../../data/translations.json'
 
 const Checkbox: FC = () => {
   return(
     <div className="checkbox">
       <label>
         <input className="uk-checkbox" type="checkbox" />
-        Согласен с Политикой конфиденциальности
+        {t.agreePrivacy}
       </label>
     </div>
   )

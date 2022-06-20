@@ -1,6 +1,8 @@
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
 
+import t from '../../data/translations.json'
+
 const BlockContent = () => {
 
   const [password, setPassword] = useState('')
@@ -20,7 +22,7 @@ const BlockContent = () => {
   return (
     <div className={access ? "uk-hidden" : "block-content"}>
       <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button onClick={() => submit()}>Войти</button>
+      <button onClick={() => submit()}>{t.login}</button>
     </div>
   )
 }

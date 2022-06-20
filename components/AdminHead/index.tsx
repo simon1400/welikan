@@ -1,6 +1,8 @@
 import { ChangeEvent, FC, useState } from "react"
 import Input from "../Input"
 
+import t from '../../data/translations.json'
+
 const AdminHead: FC = () => {
 
   const [search, setSearch] = useState<string>('')
@@ -13,7 +15,7 @@ const AdminHead: FC = () => {
     <div className="admin-head">
       <div>
         <div>
-          <h1>Информация</h1>
+          <h1>{t.info}</h1>
         </div>
         <div>
           <Input 
@@ -36,7 +38,7 @@ const AdminHead: FC = () => {
           </div>
           <div>
             <span>Клиника “Нова”</span>
-            <a href="">Выйти</a>
+            <a href="">{t.logOut}</a>
           </div>
         </div>
       </div>

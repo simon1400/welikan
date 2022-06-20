@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { LabelList } from "recharts";
 import { BarChart, Bar, Cell, XAxis, YAxis, ResponsiveContainer } from 'recharts';
-
+import t from '../../../data/translations.json'
 const data = [
   {
     name: 'Иванов Врач Иванович',
@@ -30,7 +30,7 @@ const COLORS = ['#425BAD', '#F5CD31', '#425BAD66', '#425BAD26', '#425BAD26'];
 const BarComponent: FC = () => {
   return (
     <div className="bar">
-      <h2>Популярность врачей (количество посетителей)</h2>
+      <h2>{t.popularityDoctors}</h2>
       <ResponsiveContainer width="100%" height="90%">
         <BarChart
           // width={1000}

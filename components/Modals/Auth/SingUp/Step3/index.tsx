@@ -3,6 +3,7 @@ import Checkbox from "../../../../Checkbox"
 import CheckIcon from "../../../../CheckIcon"
 import Input from "../../../../Input"
 import ContainerAuth from "../../Container"
+import t from '../../../../../data/translations.json'
 
 const Step3: FC = () => {
 
@@ -17,15 +18,15 @@ const Step3: FC = () => {
   }
 
   return (
-    <ContainerAuth title="Контактные данные">
+    <ContainerAuth title={t.contactInfo}>
       <div className="modal-input multi">
-        <Input placeholder="ФИО" name="name" onChange={handleChange} value={values.name} />
+        <Input placeholder={t.fullName} name="name" onChange={handleChange} value={values.name} />
         {/* <div><a href="" className="button bare">подтвердить</a></div> */}
         <CheckIcon />
       </div>
       <div className="modal-input multi">
-        <Input placeholder="ФИО" name="name" onChange={handleChange} value={values.name} />
-        <div><a href="" className="button bare">подтвердить</a></div>
+        <Input placeholder={t.fullName} name="name" onChange={handleChange} value={values.name} />
+        <div><a href="" className="button bare">{t.confirm}</a></div>
       </div>
       <Checkbox />
     </ContainerAuth>

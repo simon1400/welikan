@@ -2,7 +2,7 @@ import { FC } from "react";
 import CheckItem from "../CheckItem";
 import Pie from "../Pie";
 import PieDataObjProps from '../../../interfaces/stats'
-
+import t from '../../../data/translations.json'
 interface CircleStatsProps {
   price?: string,
   data: PieDataObjProps[]
@@ -14,7 +14,7 @@ const Circle: FC<CircleStatsProps> = ({
 }) => {
   return (
     <div className="circle-stats">
-      <h2>Статистика отзывов, %</h2>
+      <h2>{t.reviewStatistics}, %</h2>
       <div className="uk-grid uk-child-width-1-2">
         <div>
           <div className="pie-wrap">

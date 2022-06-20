@@ -1,5 +1,5 @@
 import { FC } from "react";
-
+import t from '../../data/translations.json'
 interface TarifItemProps {
   blue?: boolean,
   yellow?: boolean
@@ -14,7 +14,7 @@ const TariffItem: FC<TarifItemProps> = ({
       <div className="tariff-content">
         <div className="head">
           <div>
-            <span>Ваш текущий тариф</span>
+            <span>{t.currentRate}</span>
             <h2>Бесплатный тариф</h2>
           </div>
           <div>
@@ -32,7 +32,7 @@ const TariffItem: FC<TarifItemProps> = ({
           </p>
         </div>
         <div>
-          <a href="" className="button big active">активен</a>
+          <a href="" className="button big active">{t.active}</a>
         </div>
       </div>
     </div>

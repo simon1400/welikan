@@ -1,5 +1,7 @@
 import { FC } from "react"
 
+import t from '../../../data/translations.json'
+
 const DoneItem: FC = () => {
   return (
     <div className="done-item">
@@ -8,7 +10,7 @@ const DoneItem: FC = () => {
       </div>
       <div className="done-content">
         <div>
-          <span>Вы оценили</span>
+          <span>{t.youAppreciated}</span>
           <div className="star-wrap">
             <span>4</span>
             <img src="/assets/star-solid.svg" alt="Star" uk-svg="" />

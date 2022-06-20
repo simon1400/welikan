@@ -3,12 +3,14 @@ import Map from "../Map"
 import MultiCheckbox from "../MultiCheckbox"
 import ShortItem from "../ShortItem"
 
+import t from '../../data/translations.json'
+
 const ModalMap: FC = () => {
   return (
     <div id="modal-map" className="modal-map uk-flex-top" uk-modal="">
       <div className="uk-modal-dialog uk-margin-auto-vertical">
         <div className="modal-left">
-          <h2>2344 Медицинских учреждения в г.Москва</h2>
+          <h2>2344 {t.medicalInstitutions} г.Москва</h2>
           <div className="left-content">
             <div>
               <MultiCheckbox />

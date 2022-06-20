@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import t from '../../../data//translations.json'
 
 const data = [
   {
@@ -43,16 +44,16 @@ const AreaComponent: FC = () => {
   return(
     <div className="area-chart">
       <div className="area-content">
-        <h2>Статистика заявок</h2>
+        <h2>{t.requisitionStatistics}</h2>
         <div className="stats-label">
           <ul>
             <li>
               <span style={{backgroundColor: "#425BAD"}}></span>
-              <p>Звонки</p>
+              <p>{t.calls}</p>
             </li>
             <li>
               <span style={{backgroundColor: "#F5CD3199"}}></span>
-              <p>Сообщения</p>
+              <p>{t.messages}</p>
             </li>
           </ul>
         </div>
@@ -100,29 +101,29 @@ const AreaComponent: FC = () => {
       <div className="area-rightbar">
         <ul>
           <li>
-            <span>Всего</span>
+            <span>{t.total}</span>
             <b>449</b>
-            <a href="">Подробнее</a>
+            <a href="">{t.moreInfo}</a>
           </li>
           <li>
-            <span>Звонки</span>
+            <span>{t.calls}</span>
             <b>221</b>
-            <a href="">Подробнее</a>
+            <a href="">{t.moreInfo}</a>
           </li>
           <li>
-            <span>Сообщения</span>
+            <span>{t.messages}</span>
             <b>221</b>
-            <a href="">Подробнее</a>
+            <a href="">{t.moreInfo}</a>
           </li>
           <li>
-            <span>В среднем в день</span>
+            <span>{t.averageDay}</span>
             <b>221</b>
-            <a href="">Подробнее</a>
+            <a href="">{t.moreInfo}</a>
           </li>
           <li>
-            <span>Эффективность</span>
+            <span>{t.effectiveness}</span>
             <b>221</b>
-            <a href="">Подробнее</a>
+            <a href="">{t.moreInfo}</a>
           </li>
         </ul>
       </div>
