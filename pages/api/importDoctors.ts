@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import slugify from 'slugify';
 import parseImageName from '../../functions/parseImg';
 import spec from '../../functions/specifications';
-// import doctor1 from '../../scribingoriginal/doctors1.json'
+// import doctor1 from '../../scribingoriginal-new/doctors1.json'
 
 // const API = 'https://welikan-strapi.pechunka.com'
 const API = 'http://localhost:1341'
@@ -59,16 +59,17 @@ export default async function handler(
 
     let specID: number[] = [], imgName, expirience;
 
+    
+
     for(let i = 0; i < 1; i++) {
 
       // specID = await spec(doctor1[i].specializations)
 
-      // imgName = parseImageName(doctor1[i].imageUrl)
+      // imgName = parseImageName(doctor1[i].imageUrl)      
 
-      let resImg = await axios.get(`${API}/upload/files`)
+      // let resImg = await axios.get(`${API}/api/upload/files?filters[hash][$eq]=1050682_20220520173821_6c29d6f57c`)
+      // let imgID = resImg.data[0].id
 
-      console.log(resImg.data);
-      
       // expirience = doctor1[i].expirience_years.map((item, index) => `${item} - ${doctor1[i].expirience[index]}`)
       // await axios.post('http://localhost:1334/api/doctors', {
       //   name: doctor1[i].name,
