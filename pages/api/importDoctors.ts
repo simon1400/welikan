@@ -6,6 +6,7 @@ import labels from '../../functions/labels';
 import parseImageName from '../../functions/parseImg';
 import parseImageType from '../../functions/parseImgtype';
 import spec from '../../functions/specifications';
+import doctor1 from '../../scribingoriginal-new/doctors1.json'
 import doctor2 from '../../scribingoriginal-new/doctors2.json'
 import doctor3 from '../../scribingoriginal-new/doctors3.json'
 import doctor4 from '../../scribingoriginal-new/doctors4.json'
@@ -91,6 +92,7 @@ export default async function handler(
   if(req.method === 'POST') {
 
     const doctorArr = [
+      doctor1,
       doctor2,
       doctor3,
       doctor4,
