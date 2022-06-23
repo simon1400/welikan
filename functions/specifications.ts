@@ -1,8 +1,8 @@
 import axios from "axios"
 import slugify from 'slugify';
 
-// const API = 'http://localhost:1341'
-const API = 'https://strapi.wellikan.com'
+const API = 'http://localhost:1341'
+// const API = 'https://strapi.wellikan.com'
 
 const spec = async (spec: string[]): Promise<number[]> => {
 

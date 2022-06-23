@@ -8,8 +8,8 @@ import parseImageType from '../../functions/parseImgtype';
 import spec from '../../functions/specifications';
 import doctor1 from '../../scribingoriginal-new/doctors1.json'
 
-const API = 'https://strapi.wellikan.com'
-// const API = 'http://localhost:1341'
+// const API = 'https://strapi.wellikan.com'
+const API = 'http://localhost:1341'
 
 type Doctor = {
   name: string;
@@ -34,7 +34,7 @@ export default async function handler(
 
     let successLength = 0, errorDoctor: any = []
 
-    for(let i = 0; i < length; i++) {
+    for(let i = 563; i < length; i++) {
 
       let imgID = []
 
