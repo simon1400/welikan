@@ -1,7 +1,8 @@
 import axios from "axios"
 import slugify from 'slugify';
 
-const API = 'http://localhost:1341'
+// const API = 'http://localhost:1341'
+const API = 'https://strapi.wellikan.com'
 
 const spec = async (spec: string[]): Promise<number[]> => {
 
@@ -10,9 +11,11 @@ const spec = async (spec: string[]): Promise<number[]> => {
   for(let a = 0; a < spec.length; a++) {
     const resData: any = await axios.get(`${API}${encodeURI(`/api/specialisations?filters[slug][$eq]=${slugify(spec[a].split(';')[0].split('.')[0], {
         lower: true,
-        remove: /[*+~´,ь.()'"!:@]/g
+        strict: true,
+        locale: 'ru',
+        remove: /[*+~´,.()'"!:@]/g
       })}`)}`
-    ).catch(err => console.error("Specialization Get", err))        
+    ).catch(err => console.error("Specialization Get", err))
 
     if(resData.data.data.length) {
       specIds.push(resData.data.data[0].id)
@@ -21,7 +24,9 @@ const spec = async (spec: string[]): Promise<number[]> => {
         title: spec[a].split(';')[0].split('.')[0],
         slug: slugify(spec[a].split(';')[0].split('.')[0], {
           lower: true,
-          remove: /[*+~´,ь.()'"!:@]/g
+          locale: 'ru',
+          strict: true, 
+          remove: /[*+~´,.()'"!:@]/g
         })
       }}).catch(err => console.log("error create spec", err?.response.data.error))
 

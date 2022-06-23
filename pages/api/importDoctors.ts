@@ -1,13 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import slugify from 'slugify';
+import labels from '../../functions/labels';
 import parseImageName from '../../functions/parseImg';
+import parseImageType from '../../functions/parseImgtype';
 import spec from '../../functions/specifications';
-// import doctor1 from '../../scribingoriginal-new/doctors1.json'
+import doctor1 from '../../scribingoriginal-new/doctors1.json'
 
-// const API = 'https://welikan-strapi.pechunka.com'
-const API = 'http://localhost:1341'
+const API = 'https://strapi.wellikan.com'
+// const API = 'http://localhost:1341'
 
 type Doctor = {
   name: string;
@@ -20,77 +22,64 @@ type Doctor = {
   address: string;
 }
 
-const example = {
-  "name":"Скакунов Ярослав Игоревич",
-  "description":"Проводит удаление зубов любой сложности (в том числе зубов мудрости), пластику перфорации верхнечелюстной пазухи, вскрытие абсцессов, иссечение капюшона, удаление доброкачественных образований. ",
-  "imageUrl":"https://cdn.docdoc.ru/doctor/1050682_20220520173821.162x162.jpg?1653451654",
-  "labels":[
-    "Стоматолог-хирург"
-  ],
-  "expirience_years":[
-    "2020"
-  ],
-  "expirience":[
-    "Имплантолог, ЭлефантМосква"
-  ],
-  "specializations":[
-    "удаление зубов любой сложности; ",
-    "зубосохраняющие операции; ",
-    "удаление мелких доброкачественных новообразований слизистой оболочки полости рта; ",
-    "хирургическое лечение кист челюстей; ",
-    "операции дентальной имплантации; ",
-    "костнопластические операции при недостаточности объема костной ткани; ",
-    "лечение воспалительных заболеваний полости рта; ",
-    "лечение заболеваний слюнных желез; ",
-    "лечение заболеваний височно-нижнечелюстного сустава."
-  ],
-  "address":["г. Москва, ","ул. Ломоносовский пр-т, д. 25, корп. 3"]
-}
-
-
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Doctor[]>
 ) {
   if(req.method === 'POST') {
 
-    // const length = doctor1.length;
+    const length = doctor1.length;
 
-    let specID: number[] = [], imgName, expirience;
+    let specIds: number[] = [], imgName, imgType, expirience, labelIds;
 
-    
+    let successLength = 0, errorDoctor: any = []
 
-    for(let i = 0; i < 1; i++) {
+    for(let i = 0; i < length; i++) {
 
-      // specID = await spec(doctor1[i].specializations)
+      let imgID = []
 
-      // imgName = parseImageName(doctor1[i].imageUrl)      
+      specIds = await spec(doctor1[i].specializations)
+      labelIds = await labels(doctor1[i].labels)
 
-      // let resImg = await axios.get(`${API}/api/upload/files?filters[hash][$eq]=1050682_20220520173821_6c29d6f57c`)
-      // let imgID = resImg.data[0].id
+      imgName = await parseImageName(doctor1[i].imageUrl)
+      imgType = await parseImageType(doctor1[i].imageUrl)
+      let resImg = await axios.get(`${API}/api/upload/files?filters[name][$eq]=${imgName}.${imgType}`)
+      
+      if(resImg.data.length) {
+        imgID = resImg.data[0].id
+      }
+      expirience = doctor1[i].expirience_years.map((item, index) => `${item} - ${doctor1[i].expirience[index]}`)
 
-      // expirience = doctor1[i].expirience_years.map((item, index) => `${item} - ${doctor1[i].expirience[index]}`)
-      // await axios.post('http://localhost:1334/api/doctors', {
-      //   name: doctor1[i].name,
-      //   slug: slugify(doctor1[i].name, {
-      //     lower: true,
-      //     remove: /[*+~´,.()'"!:@]/g
-      //   }),
-      //   content: doctor1[i].description,
-      //   expirience: expirience.join('\n'),
-      //   image: resImg.data[0].id,
-      //   address: doctor1[i].address.join(' ')
-      // }).then(res => {
-      //   console.log('Success update --', res.data.title)
-      // }).catch(err => {
-      //   if(err.response?.data){
-      //     console.log(err.response.data)
-      //   }else{
-      //     console.log(err.response)
-      //   }
-      // })
+      await axios.post(`${API}/api/doctors`, { data: {
+        title: doctor1[i].name,
+        slug: slugify(doctor1[i].name, {
+          lower: true,
+          locale: 'ru',
+          strict: true, 
+          remove: /[*+~´,.()'"!:@]/g
+        }),
+        content: doctor1[i].description,
+        experience: expirience.join('\n'),
+        labels: labelIds,
+        specialisations: specIds,
+        image: imgID,
+        address: doctor1[i].address.join('')
+      }
+      }).then(res => {        
+        successLength++;
+      }).catch(err => {
+        errorDoctor.push(doctor1[i].name)
+        if(err.response?.data){
+          console.log("Error create doctor --", err.response.data.error.details.errors)
+        }else{
+          console.log("Error create doctor --", err.response)
+        }
+      })
+
+      process.stdout.write(`\r${i+1}/${length} - done ${successLength}`)
     }
+
+    console.log(errorDoctor);
     
     res.status(200).end()
   }else{
