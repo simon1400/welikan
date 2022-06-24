@@ -103,7 +103,7 @@ export default async function handler(
       }).catch(err => {
         errorClinics.push(clinics[i].title)
         if(err.response?.data){
-          console.log("Error create clinics 1 --", err.response.data)
+          console.log("Error create clinics 1 --", err.response?.data?.error?.details?.errors)
         }else{
           console.log("Error create clinics 2 --", err.response)
         }
