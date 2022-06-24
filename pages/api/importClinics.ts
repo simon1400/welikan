@@ -125,19 +125,18 @@ export default async function handler(
 const getImageIds = async (imageUrls, delimeter: number) => {
 
   const imgIds = []
-  if(imageUrls[0] !== null) {
     
-    for(var i = 0; i < (imageUrls.length / delimeter); i++) {
-      
+  for(var i = 0; i < (imageUrls.length / delimeter); i++) {
+    if(imageUrls[i]){
       const imgName = await parseImgWithType(imageUrls[i])
       const resImg = await axios.get(`${API}/api/upload/files?filters[name][$eq]=${imgName}`)
-  
+
       if(resImg.data.length) {
         imgIds.push(resImg.data[0].id)
       }
     }
-    
   }
+    
   return imgIds
 
 }
