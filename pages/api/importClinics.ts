@@ -71,6 +71,11 @@ export default async function handler(
       }))
 
       const doctorsIds = await doctors(clinics[i].doctors)
+
+      const open = clinics[i].oppening_hours.map((item: any, idx: number) => ({
+        time: item,
+        days: clinics[i].oppening_days[idx]
+      }))
       
       const data = {
         title: clinics[i].title,
@@ -89,7 +94,8 @@ export default async function handler(
         images: galeryIds,
         licences: licenceIds,
         services: services,
-        doctors: doctorsIds
+        doctors: doctorsIds,
+        open: open
       }
       
       await axios.post(`${API}/api/institutions`, { data: data }).then(res => {        
