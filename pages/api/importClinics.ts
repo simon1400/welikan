@@ -128,7 +128,7 @@ const getImageIds = async (imageUrls, delimeter: number) => {
     
   for(var i = 0; i < (imageUrls.length / delimeter); i++) {
     if(imageUrls[i]){
-      const imgName = await parseImgWithType(imageUrls[i])
+      const imgName = parseImgWithType(imageUrls[i])      
       const resImg = await axios.get(`${API}/api/upload/files?filters[name][$eq]=${imgName}`)
 
       if(resImg.data.length) {
