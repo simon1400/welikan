@@ -7,17 +7,20 @@ interface StockItemProps {
   head: string
   content: string
   stars?: number
+  slug: string
 }
 
 const StockItem: FC<StockItemProps> = ({
   skydka, 
   head, 
   content,
+  slug,
   stars = 0
 }) => {
+
   return (
-    <li>
-      <Link href="/stock/slug">
+    <li className="wrap-promo">
+      <Link href={slug}>
         <a className="stock-item">
           <div className="img-wrap">
             <img src="/assets/stock-item.jpg" alt="Stock item base" />
@@ -25,7 +28,7 @@ const StockItem: FC<StockItemProps> = ({
           </div>
           <div className="uk-flex uk-flex-between">
             <h4>{head}</h4>
-            <div><label htmlFor="" className="uk-label bare">Скидка {skydka}</label></div>
+            <div><label htmlFor="" className="uk-label bare">{skydka}</label></div>
           </div>
           <div dangerouslySetInnerHTML={{__html: content}} />
         </a>

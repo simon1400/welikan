@@ -29,13 +29,9 @@ const Home: NextPage = ({
   // @ts-ignore
   data
 }) => {
-
+  
   const [city, setCity] = useState("Москва")
   const [geo, setGeo] = useState(false)
-
-  useEffect(() => {
-    // axios.post('http://localhost:3008/api/importDoctor').then(res => console.log(res.data)).catch(err => console.error(err))
-  }, [])
 
   // const successfulLookup = position => {
   //   const { latitude, longitude } = position.coords;
@@ -54,7 +50,6 @@ const Home: NextPage = ({
   //   }
   // }, [])
   
-  
   return (
     <Page>
       <section className="search blue-bg">
@@ -70,11 +65,12 @@ const Home: NextPage = ({
         <Map />
       </div>
       <section className="small-sec uk-visible@m">
-      {!!data.promotions.length && <div className="uk-container">
+        {!!data.promotions.data.length && <div className="uk-container">
           <Slider>
             {/* @ts-ignore */}
             {data.promotions.data.map((item, index) => <StockItem 
               key={index} 
+              slug={`/stock/${item.attributes.slug}`}
               head={item.attributes.title} 
               content={item.attributes.content}
               skydka={item.attributes.metkis?.data[0].attributes.title} />)}
@@ -98,19 +94,20 @@ const Home: NextPage = ({
             <h2>Врачи</h2>
             <a href="/asd">Полный список</a>
           </div>
-          <div className="uk-grid uk-child-width-1-2" uk-grid="">
+          <div className="uk-grid uk-child-width-1-2" uk-height-match="target: > div > div" uk-grid="">
             {/* @ts-ignore */}
             {data.doctors.data.map((item, index) => <div key={index}>
               <ShortItem 
                 small 
                 review
+                slug={`/doctor/${item.attributes.slug}`}
                 title={item.attributes.title}
                 image={item.attributes.image.data.attributes}
                 content={item.attributes.content}
-                labels={item.attributes.specialisations.data}
+                labels={item.attributes.labels.data}
                 address={item.attributes.address}
-                email={item.attributes.contact.email}
-                phone={item.attributes.contact.phone}
+                email={item.attributes.contact?.email}
+                phone={item.attributes.contact?.phone}
               />
             </div>)}
           </div>
@@ -122,12 +119,13 @@ const Home: NextPage = ({
             <h2>Клиники</h2>
             <a href="/asd">Полный список</a>
           </div>
-          <div className="uk-grid uk-child-width-1-2" uk-grid="">
+          <div className="uk-grid uk-child-width-1-2" uk-height-match="target: > div > div" uk-grid="">
             {/* @ts-ignore */}
             {data.institutions.data.map((item, index) => <div key={index}>
               <ShortItem 
                 small 
                 review 
+                slug={`/company/${item.attributes.slug}`}
                 image={item.attributes.images.data[0].attributes}
                 title={item.attributes.title}
                 content={item.attributes.content}

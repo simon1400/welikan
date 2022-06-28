@@ -1,17 +1,23 @@
 import { FC } from "react"
 import Stars from "../Stars"
 
-const ReviewItem: FC = () => {
+interface Rewiew {
+  name?: string;
+  content?: string;
+}
+
+const ReviewItem: FC<Rewiew> = ({
+  name="",
+  content=""
+}) => {
   return (
     <div className="review-item">
       <div className="top">
-        <h5>Имя клиента</h5>
+        <h5>{name}</h5>
         <Stars />
       </div>
       <time>05.06.2020</time>
-      <div className="content">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia assumenda explicabo laborum. Suscipit nihil ipsa amet doloremque? Quam facere provident quia. Voluptates, corporis laboriosam voluptatibus ipsam illum recusandae quidem maxime?</p>
-      </div>
+      <div className="content" dangerouslySetInnerHTML={{__html: content}} />
     </div>
   )
 }

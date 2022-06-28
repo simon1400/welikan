@@ -16,12 +16,12 @@ const ModalMap: FC = () => {
               <MultiCheckbox />
             </div>
             <div className="map-modal-result">
+              {/* <ShortItem xsmall />
               <ShortItem xsmall />
               <ShortItem xsmall />
               <ShortItem xsmall />
               <ShortItem xsmall />
-              <ShortItem xsmall />
-              <ShortItem xsmall />
+              <ShortItem xsmall /> */}
             </div>
           </div>
         </div>

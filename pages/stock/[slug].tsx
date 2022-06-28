@@ -2,18 +2,48 @@ import { NextPage } from "next"
 import Breadcrumbs from "../../components/Breadcrumbs"
 import FullHeadItem from "../../components/FullHeadItem"
 import Page from "../../layout/Page"
+import { getStockQuery } from "../../queries/stock";
+import { client } from "../../utility/graphql";
 
-const StockFull: NextPage = () => {
+// @ts-ignore
+export async function getServerSideProps(ctx) {
+  const { data } = await client.query({
+    query: getStockQuery,
+    variables: {
+      slug: ctx.query.slug
+    }
+  });
+
+  return {
+    props: {
+      data: data.promotions.data[0].attributes
+    },
+ };
+}
+
+const StockFull: NextPage = ({
+  // @ts-ignore
+  data
+}) => {
+
+  console.log(data);
+
+  // return null
+  
   return (
     <Page>
       <div className="uk-container">
         <Breadcrumbs />
-        <FullHeadItem />
-        <div className="content">
-          <p>Условия акции:</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim ex neque, quis rutrum sapien eleifend ac. Vestibulum hendrerit tellus risus. Proin convallis fermentum consectetur. Sed dictum blandit enim, non tincidunt massa tincidunt quis. Curabitur pulvinar erat in bibendum rhoncus. Curabitur tempus diam a lobortis iaculis. Praesent eget dui eros. Curabitur ac tempus sem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim ex neque, quis rutrum sapien eleifend ac. Vestibulum hendrerit tellus risus. Proin convallis fermentum consectetur. Sed dictum blandit enim, non tincidunt massa tincidunt quis. Curabitur pulvinar erat in bibendum rhoncus. Curabitur tempus diam a lobortis iaculis. Praesent eget dui eros. Curabitur ac tempus sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim ex neque, quis rutrum sapien eleifend ac. Vestibulum hendrerit tellus risus. Proin convallis fermentum consectetur. Sed dictum blandit enim, non tincidunt massa tincidunt quis. Curabitur pulvinar erat in bibendum rhoncus. Curabitur tempus diam a lobortis iaculis. Praesent eget dui eros. Curabitur ac tempus sem.</p>
-        </div>
+        <FullHeadItem  
+          title={data.title}
+          image={data.image?.data?.attributes}
+          // content={data.content}
+          enroll
+          review={false}
+          time
+          labelsTop={data.metkis.data}
+        />
+        <div className="content" dangerouslySetInnerHTML={{__html: data.content}} />
       </div>
     </Page>
   )

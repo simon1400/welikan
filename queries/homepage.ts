@@ -11,6 +11,7 @@ const homepageQuery = gql`
               attributes{
                 title
                 content
+                slug
                 images{
                   data{
                     attributes{
@@ -18,13 +19,7 @@ const homepageQuery = gql`
                     }
                   }
                 }
-                address {
-                  street
-                  houseNr
-                  city
-                  zip
-                  country
-                }
+                address
                 contact{
                   phone
                   email
@@ -43,6 +38,7 @@ const homepageQuery = gql`
             data{
               attributes{
                 title
+                slug
                 image{
                   data{
                     attributes{
@@ -54,7 +50,7 @@ const homepageQuery = gql`
                   phone
                   email
                 }
-                specialisations{
+                labels{
                   data{
                     attributes{
                       title

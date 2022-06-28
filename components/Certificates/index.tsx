@@ -1,11 +1,18 @@
 import { FC } from "react"
+const APP_API = process.env.APP_API
 
-const Certificates: FC = () => {
+interface ICertificates {
+  image: any
+}
+
+const Certificates: FC<ICertificates> = ({
+  image
+}) => {
   return (
     <div className="certificat">
       <div uk-lightbox="">
-        <a href="/assets/certificat.jpg">
-          <img src="/assets/certificat.jpg" alt="" />
+        <a href={`${APP_API}${image.url}`}>
+          <img src={`${APP_API}${image.url}`} alt="" />
         </a>
       </div>
     </div>
