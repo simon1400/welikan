@@ -82,8 +82,8 @@ const Company: NextPage = ({
                 content={item.attributes.content}
               />)}
               {/* <div className="uk-text-center uk-margin-large-top"><a className="button bare" href="/asd">Еще +20</a></div> */}
-              {!!data.services.length && <h2>Прайс-лист</h2>}
-              {!!data.services.length && <table className="uk-table uk-table-divider">
+              {!!data.services.data.length && <h2>Прайс-лист</h2>}
+              {!!data.services.data.length && <table className="uk-table uk-table-divider">
                 <thead>
                   <tr>
                     <th className="uk-table-expand">Услуга</th>
@@ -91,9 +91,9 @@ const Company: NextPage = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {data.services.map((item: any, index: number) => <tr key={index}>
-                    <td>{item.title}</td>
-                    <td>{item.price}</td>
+                  {data.services.data.map((item: any, index: number) => <tr key={index}>
+                    <td>{item.attributes.title}</td>
+                    <td>{item.attributes.price}</td>
                   </tr>)}
                 </tbody>
               </table>}

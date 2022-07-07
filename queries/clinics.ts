@@ -99,8 +99,13 @@ const getClinicsQuery = gql`
             time
           }
           services{
-            title
-            price
+            data{
+              attributes{
+                title
+                price
+              }
+            }
+            
           }
           # labels{
           #   data{
