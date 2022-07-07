@@ -7,7 +7,7 @@ import ModalClose from "../../../../components/Modals/Close"
 
 const SingUpModal: FC = () => {
   return(
-    <div id="modal-singup" className="auth-modal xsmall-modal uk-flex-top" uk-modal="">
+    <div id="modal-singup" className="auth-modal xsmall-modal uk-flex-top uk-modal" uk-modal="">
       <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <ModalClose />
         <TitleAuth title="Регистрация" subTitle="Шаг 1/3" />

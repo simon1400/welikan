@@ -46,7 +46,6 @@ const BaseSearchLine: FC<BaseSearchLineProps> = ({
         {!home && <Select />}
       </form>
     </div>
-   
   )
 }
 

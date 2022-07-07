@@ -17,7 +17,7 @@ const WrapModal: FC<WrapModalProps> = ({
   footer = false
 }) => {
   return(
-    <div id={id} className={`uk-flex-top ${className} ${size}`} uk-modal="">
+    <div id={id} className={`uk-modal uk-flex-top ${className} ${size}`} uk-modal="">
       <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <ModalClose />
         {children}

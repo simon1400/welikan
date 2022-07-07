@@ -56,7 +56,7 @@ const ShortItem: FC<ShortItemProps> = ({
               {time && <time>до 20.07.2021</time>}
             </div>
             {!!labels?.length && <div className="labels-wrap">
-              {labels.splice(0, 3).map((item, index) => <label key={index} className="uk-label bare">{item.attributes.title}</label>)}
+              {labels.splice(0, 3).map((item, index) => <label key={index} className="uk-label bare">{item?.attributes?.title || item}</label>)}
             </div>}
             {content && <div dangerouslySetInnerHTML={{__html: content.substring(0, 100)+"..."}}/>}
           </div>
