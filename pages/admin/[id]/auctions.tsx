@@ -14,13 +14,13 @@ const Auctions: NextPage = () => {
           <a href="" className="button bare square small">Выигранные</a>
         </div>
         <div>
-          <Select />
+          {/* <Select /> */}
         </div>
       </div>
       {/* <ShortItem descr labels email time/>
       <ShortItem descr labels email time/>
       <ShortItem descr labels email time/> */}
-      <Pagination />
+      {/* <Pagination /> */}
     </Page>
   )
 }

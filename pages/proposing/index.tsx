@@ -21,14 +21,14 @@ const Proposing: NextPage = () => {
                   <a href="#" uk-toggle="target: #modal-map" className="button uk-margin-small-top">показать на карте</a>
                 </div>
                 <div>
-                  <Select />
+                  {/* <Select /> */}
                 </div>
               </div>
               {/* <ShortItem big descr address email phone labels stars review />
               <ShortItem big descr address email phone labels stars review />
               <ShortItem big descr address email phone labels stars review />
               <ShortItem big descr address email phone labels stars review /> */}
-              <Pagination />
+              {/* <Pagination /> */}
             </div>
           </div>
         </div>

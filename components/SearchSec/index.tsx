@@ -10,8 +10,8 @@ const SearchSec: FC = () => {
         <h1>{t.advancedSearch}</h1>
         <BaseSearchLine />
         <div className="range-wrap">
-          <Range />
-          <Range />
+          {/* <Range />
+          <Range /> */}
         </div>
         <div>
           <a href="" className="button accent">{t.find}</a>
