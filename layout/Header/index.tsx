@@ -5,10 +5,12 @@ import Hamburger from '../../components/Hamburger'
 import topNavQuery from '../../queries/topNav'
 import { useQuery } from '@apollo/client'
 import t from '../../data//translations.json'
+import { useGlobalState } from '../../context/dataStateContext'
 
 const Header: FC = () => {
 
-  const { loading, error, data } = useQuery(topNavQuery);
+  const { setState } = useGlobalState();
+  const { loading, data } = useQuery(topNavQuery);
   const [menu, setMenu] = useState(false)
 
   if(loading) {
@@ -18,23 +20,30 @@ const Header: FC = () => {
   const topNav = data.global.data.attributes.topNav
   const phone = data.global.data.attributes.phone
 
+  const handleModal = (e: any, modal: string) => {
+    e.preventDefault()
+    setState({modal})
+  }
+
   return (
     <header>
       <div className="uk-container">
         <div className="header-wrap">
-          <Link href="/">
-            <a className="logo">
-              <img src="/assets/logo.png" alt="" />
-            </a>
-          </Link>
+          <a href="/" className="logo">
+            <img src="/assets/logo.png" alt="" />
+          </a>
           <nav className="desktopMenu">
             <ul className="uk-visible@m">
-              {topNav.map((item: any, index: number) => <li key={index}><Link href={item.url}><a>{item.title}</a></Link></li>)}
+              {topNav.map((item: any, index: number) => <li key={index}>
+                <Link href={item.url}>
+                  <a>{item.title}</a>
+                </Link>
+              </li>)}
             </ul>
-            <div><a href="/ad" className="button accent">{t.orderService}</a></div>
+            <div><a href="/ads" className="button accent">{t.orderService}</a></div>
             <div className="contact-top uk-visible@m">
-              <a href="/asd" className="button link">{phone}</a>
-              <a href="/asd">{t.orderCall}</a>
+              <a href={`tel:${phone}`} className="button link">{phone}</a>
+              <a href="/" onClick={e => handleModal(e, 'call')}>{t.orderCall}</a>
             </div>
           </nav>
           <div className="control-top">

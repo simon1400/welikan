@@ -75,8 +75,8 @@ const ShortItem: FC<ShortItemProps> = ({
             </div>
           </div>
         </div>
-        {review && <ReviewModal />}
-        {phone && <CallModal />}
+        {/* {review && <ReviewModal />} */}
+        {/* {phone && <CallModal />} */}
       </a>
     </Link>
   )

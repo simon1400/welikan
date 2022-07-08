@@ -76,7 +76,7 @@ const Home: NextPage = ({
         <div className="uk-container uk-container-small">
           <h1>{data.title} {city}</h1>
           <div className="form-wrap">
-            <form onSubmit={(e) => submitSearch(e)}>
+            <form onSubmit={submitSearch}>
               <Input 
                 name="service"
                 img="/assets/search.svg"
