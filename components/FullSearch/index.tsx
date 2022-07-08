@@ -13,18 +13,6 @@ interface SearchProps {
 
 const FullSearch: FC = () => {
 
-  const [search, setSearch] = useState<SearchProps>({
-    service: "",
-    place: ""
-  })
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch({
-      ...search, 
-      [e.target.name]: e.target.value
-    })
-  }
-
   return (
     <section className="search-sec">
       <div className="uk-container">

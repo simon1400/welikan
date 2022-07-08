@@ -25,10 +25,6 @@ const StockFull: NextPage = ({
   // @ts-ignore
   data
 }) => {
-
-  console.log(data);
-
-  // return null
   
   return (
     <Page>

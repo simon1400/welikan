@@ -107,13 +107,6 @@ const getClinicsQuery = gql`
             }
             
           }
-          # labels{
-          #   data{
-          #     attributes{
-          #       title
-          #     }
-          #   }
-          # }
         }
       }
     }

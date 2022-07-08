@@ -1,18 +1,29 @@
 import Input from "../Input"
 import t from '../../data/translations.json'
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const SearchInput = (props: UseSearchBoxProps) => {
 
   const { refine } = useSearchBox(props);
-  
-  const [value, setValue] = useState('')
+
+  const router = useRouter()
+  const [value, setValue] = useState<string>('')
+  const [firstUpdate, setFirstUpdate] = useState(false)
 
   const handleChange = (e: any) => {
     refine(e.target.value)
     setValue(e.target.value)
   }
+
+  useEffect(() => {
+    if(router.query['institution[query]'] && !firstUpdate) {
+      refine(router.query['institution[query]'] as string)
+      setValue(router.query['institution[query]'] as string)
+      setFirstUpdate(true)
+    }
+  }, [router])
 
   return (
     <Input 

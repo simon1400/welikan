@@ -78,7 +78,9 @@ body{
   border-radius: 100px;
   padding: 10px 38px;
   text-transform: uppercase;
+  border: none;
   font-size: $text_xs;
+  cursor: pointer;
   line-height: 20px;
   font-weight: bold;
   white-space: nowrap;

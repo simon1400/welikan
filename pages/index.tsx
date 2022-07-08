@@ -1,6 +1,4 @@
 import type { NextPage } from 'next'
-import BaseSearchLine from '../components/BaseSearchLine'
-// import DirectionList from '../components/DirectionList'
 import Map from '../components/Map'
 import ShortItem from '../components/ShortItem'
 import StockItem from '../components/StockItem'
@@ -8,30 +6,41 @@ import Slider from '../components/Slider'
 import Page from '../layout/Page'
 import { client } from '../utility/graphql'
 import homepageQuery from '../queries/homepage'
-import { useEffect, useState } from 'react'
-// import axios from 'axios'
-// import doctor1 from '../../scribingoriginal/doctors1.json'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import t from '../data/translations.json'
+import Input from '../components/Input'
+import { useRouter } from 'next/router'
+import getDirectionsQuery from '../queries/directions'
+import Directions from '../components/Directions'
 
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: homepageQuery
   });
+  const { data: directions } = await client.query({
+    query: getDirectionsQuery,
+    variables: {
+      page: 1
+    }
+  });
 
   return {
     props: {
-      data: data.homePage.data.attributes
+      data: data.homePage.data.attributes,
+      directions: directions.labels
     },
  };
 }
 
 const Home: NextPage = ({
   // @ts-ignore
-  data
+  data, directions
 }) => {
+
+  const router = useRouter()
   
   const [city, setCity] = useState("Москва")
-  const [geo, setGeo] = useState(false)
+  // const [geo, setGeo] = useState(false)
 
   // const successfulLookup = position => {
   //   const { latitude, longitude } = position.coords;
@@ -49,6 +58,17 @@ const Home: NextPage = ({
   //     navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
   //   }
   // }, [])
+
+  const [search, setSearch] = useState('')
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value)
+  }
+
+  const submitSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    router.push(`/search?institution[query]=${search}&institution[range][rating]=0:5`)
+  }
   
   return (
     <Page>
@@ -56,8 +76,16 @@ const Home: NextPage = ({
         <div className="uk-container uk-container-small">
           <h1>{data.title} {city}</h1>
           <div className="form-wrap">
-            <BaseSearchLine home />
-            <div><a href="/asd" className="button accent">{t.find}</a></div>
+            <form onSubmit={(e) => submitSearch(e)}>
+              <Input 
+                name="service"
+                img="/assets/search.svg"
+                placeholder={t.searchService} 
+                onChange={handleSearch} 
+                value={search} 
+              />
+              <button type="submit" className="button accent">{t.find}</button>
+            </form>
           </div>
         </div>
       </section>
@@ -67,8 +95,7 @@ const Home: NextPage = ({
       <section className="small-sec uk-visible@m">
         {!!data.promotions.data.length && <div className="uk-container">
           <Slider>
-            {/* @ts-ignore */}
-            {data.promotions.data.map((item, index) => <StockItem 
+            {data.promotions.data.map((item: any, index: number) => <StockItem 
               key={index} 
               slug={`/stock/${item.attributes.slug}`}
               head={item.attributes.title} 
@@ -77,26 +104,15 @@ const Home: NextPage = ({
           </Slider>
         </div>}
       </section>
-      {/* <section className="bg-grey">
-        <div className="uk-container">
-          <div className="section-head">
-            <h2>Направления</h2>
-            <a href="/abs"><label htmlFor="" className="uk-label">Россия<img src="/assets/times.svg" uk-svg="" /></label></a>
-            <a href="/abs"><label htmlFor="" className="uk-label">Москва<img src="/assets/times.svg" uk-svg="" /></label></a>
-          </div>
-          <DirectionList />
-          <div className="uk-text-center uk-margin-top"><a className="button bare" href="/asd">Еще +20</a></div>
-        </div>
-      </section> */}
+      <Directions data={directions} />
        <section>
        {!!data.doctors.data.length && <div className="uk-container">
           <div className="section-head">
             <h2>Врачи</h2>
-            <a href="/asd">Полный список</a>
+            {/* <a href="/asd">Полный список</a> */}
           </div>
           <div className="uk-grid uk-child-width-1-2" uk-height-match="target: > div > div" uk-grid="">
-            {/* @ts-ignore */}
-            {data.doctors.data.map((item, index) => <div key={index}>
+            {data.doctors.data.map((item: any, index: number) => <div key={index}>
               <ShortItem 
                 small 
                 review
@@ -117,11 +133,10 @@ const Home: NextPage = ({
         {!!data.institutions.data.length && <div className="uk-container">
           <div className="section-head">
             <h2>Клиники</h2>
-            <a href="/asd">Полный список</a>
+            {/* <a href="/asd">Полный список</a> */}
           </div>
           <div className="uk-grid uk-child-width-1-2" uk-height-match="target: > div > div" uk-grid="">
-            {/* @ts-ignore */}
-            {data.institutions.data.map((item, index) => <div key={index}>
+            {data.institutions.data.map((item: any, index: number) => <div key={index}>
               <ShortItem 
                 small 
                 review 

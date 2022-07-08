@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 
 // const data = {
 //   "a": {
@@ -17,18 +17,41 @@ import { FC } from "react"
 //   }
 // }
 
-const DirectionList: FC = () => {
+interface DirectionListProps {
+  data: any
+} 
+
+const DirectionList: FC<DirectionListProps> = ({
+  data
+}) => {
+
+  const indexWords = (input: any) => {
+    return input.reduce((acc: any, cur: any) => {
+      
+      acc[cur.attributes.title[0]] 
+        ? acc[cur.attributes.title[0]].push(cur.attributes.title) 
+        : acc[cur.attributes.title[0]] = [ cur.attributes.title ];
+
+      return acc;
+    }, {});
+  }
+
+  const [filteredData, setFilteredData] = useState(indexWords(data))
+
+  useEffect(() => {
+    setFilteredData(indexWords(data))
+  }, [data])
+  
   return (
     <div className="direction-list">
       <ul>
-        <li><b>A</b><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><b>A</b><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
-        <li><a href="/asd">Аллергология</a><span>23</span></li>
+        {Object.keys(filteredData).map((key: any) => {
+          return filteredData[key].map((item: string, idx: number) => <li key={key+idx}>
+            {idx === 0 && <b>{key}</b>}
+            <a href="/abs">{item}</a>
+            {/* <span>23</span> */}
+          </li>)
+        })}
       </ul>
     </div>
   )
